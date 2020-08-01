@@ -1,0 +1,68 @@
+<p>
+  <strong>Focus:</strong>
+  <%= @actionitem.focus %>
+</p>
+ 
+<p>
+  <strong>Description:</strong>
+  <%= @actionitem.description %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @actionitem.owner %>
+</p>
+
+<p>
+  <strong>Due:</strong>
+  <%= @actionitem.due %>
+</p>
+
+<p>
+  <strong>Resources:</strong>
+  <%= @actionitem.resources %>
+</p>
+
+<p>
+  <strong>Urgency:</strong>
+  <%= @actionitem.urgency %>
+</p>
+
+<p>
+  <strong>Importance:</strong>
+  <%= @actionitem.importance %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @actionitem.status %>
+</p>
+
+<p>
+  <strong>Updates:</strong>
+  <%= @actionitem.updates %>
+</p>
+
+<p>
+  <strong>Completion:</strong>
+  <%= @actionitem.completion %>
+</p>
+
+<p>
+  <strong>Created:</strong>
+  <%= @actionitem.created_at %>
+</p>
+
+<p>
+  <strong>Updated:</strong>
+  <%= @actionitem.updated_at %>
+</p>
+
+<h2>Comments</h2>
+<%= render @actionitem.comments %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
+
+<%= link_to 'Edit', edit_actionitem_path(@actionitem) %> |
+<%= link_to 'Back', actionitems_path %>

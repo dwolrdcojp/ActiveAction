@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  focus: MyString
+  description: MyText
+  owner: MyString
+  due: 2020-07-31
+  resources: MyText
+  urgency: MyString
+  importance: MyString
+  status: MyString
+  updates: MyText
+  completion: 2020-07-31
+
+two:
+  focus: MyString
+  description: MyText
+  owner: MyString
+  due: 2020-07-31
+  resources: MyText
+  urgency: MyString
+  importance: MyString
+  status: MyString
+  updates: MyText
+  completion: 2020-07-31

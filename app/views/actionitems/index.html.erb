@@ -1,0 +1,40 @@
+<h1>Action Items</h1>
+
+<%= link_to 'New Action Item', new_actionitem_path %>
+
+<table>
+  <tr>
+    <th>Focus</th>
+    <th>Description</th>
+    <th>Owner</th>
+    <th>Due</th>
+    <th>Resources</th>
+    <th>Urgency</th>
+    <th>Importance</th>
+    <th>Status</th>
+    <th>Updates</th>
+    <th>Completion</th>
+    <th>Created</th>
+    <th>Updated</th>
+  </tr>
+
+  <% @actionitems.each do |actionitem| %>
+    <tr>
+      <td><%= actionitem.focus %></td>
+      <td><%= actionitem.description %></td>
+      <td><%= actionitem.owner %></td>
+      <td><%= actionitem.due %></td>
+      <td><%= actionitem.resources %></td>
+      <td><%= actionitem.urgency %></td>
+      <td><%= actionitem.importance %></td>
+      <td><%= actionitem.status %></td>
+      <td><%= actionitem.updates %></td>
+      <td><%= actionitem.completion %></td>
+      <td><%= actionitem.created_at %></td>
+      <td><%= actionitem.updated_at %></td>
+      <td><%= link_to 'Show', actionitem_path(actionitem) %></td>
+      <td><%= link_to 'Edit', edit_actionitem_path(actionitem) %></td>
+      <td><%= link_to 'Destroy', actionitem_path(actionitem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
