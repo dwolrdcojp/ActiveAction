@@ -1,27 +1,29 @@
 <h1>Action Items</h1>
 
-<%= link_to 'New Action Item', new_actionitem_path %>
+<%= link_to 'New Action Item', new_actionitem_path, class: "btn btn-primary" %><br><br>
 
-<table>
-  <tr>
-    <th>Focus</th>
-    <th>Description</th>
-    <th>Owner</th>
-    <th>Due</th>
-    <th>Resources</th>
-    <th>Urgency</th>
-    <th>Importance</th>
-    <th>Status</th>
-    <th>Updates</th>
-    <th>Completion</th>
-    <th>Created</th>
-    <th>Updated</th>
-  </tr>
-
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Focus</th>
+      <th scope="col">Description</th>
+      <th scope="col">Owner</th>
+      <th scope="col">Due</th>
+      <th scope="col">Resources</th>
+      <th scope="col">Urgency</th>
+      <th scope="col">Importance</th>
+      <th scope="col">Status</th>
+      <th scope="col">Updates</th>
+      <th scope="col">Completion</th>
+      <th scope="col">Created</th>
+      <th scope="col">Updated</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @actionitems.each do |actionitem| %>
     <tr>
       <td><%= actionitem.focus %></td>
-      <td><%= actionitem.description %></td>
+      <td><%= link_to actionitem.description, actionitem_path(actionitem) %></td>
       <td><%= actionitem.owner %></td>
       <td><%= actionitem.due %></td>
       <td><%= actionitem.resources %></td>
@@ -32,9 +34,8 @@
       <td><%= actionitem.completion %></td>
       <td><%= actionitem.created_at.strftime("%F") %></td>
       <td><%= actionitem.updated_at.strftime("%F") %></td>
-      <td><%= link_to 'Show', actionitem_path(actionitem) %></td>
-      <td><%= link_to 'Edit', edit_actionitem_path(actionitem) %></td>
-      <td><%= link_to 'Destroy', actionitem_path(actionitem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to fa_icon("pencil 2x"), edit_actionitem_path(actionitem), style: 'color:#00cc44;' %></td>
+      <td><%= link_to fa_icon("trash 2x"), actionitem_path(actionitem), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

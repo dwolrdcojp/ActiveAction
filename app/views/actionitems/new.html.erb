@@ -15,20 +15,22 @@
       </ul>
     </div>
     <% end %>
-
+<div class="container">
   <p>
-    <%= form.label :focus %><br>
-    <%= form.text_field :focus %>
+    <div class="form-group">
+      <%= form.label :focus %><br>
+      <%= form.text_field :focus, :class => "form-control" %>
+    </div>
   </p>
 
   <p>
     <%= form.label :description %><br>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, :class => "form-control" %>
   </p>
 
   <p>
     <%= form.label :owner %><br>
-    <%= form.text_field :owner %>
+    <%= form.text_field :owner, :class => "form-control" %>
   </p>
 
   <p>
@@ -38,22 +40,23 @@
 
   <p>
     <%= form.label :resources %><br>
-    <%= form.text_area :resources %>
+    <%= form.text_area :resources, :class => "form-control" %>
   </p>
 
   <p>
     <%= form.label :urgency %><br>
-    <%= form.select :urgency, ['Urgent', 'Not Urgent'] %>
+    <%= form.select :urgency, ['Urgent', 'Not Urgent'], :class => "form-control" %>
   </p>
 
   <p>
     <%= form.label :importance %><br>
-    <%= form.select :importance, ['Important', 'Not Important'] %>
+    <%= form.select :importance, ['Important', 'Not Important'], :class => "form-control" %>
   </p>
 
   <p>
     <%= form.submit %>
   </p>
   <% end %>
+</div>
 
 <%= link_to 'Back', actionitems_path %> 
