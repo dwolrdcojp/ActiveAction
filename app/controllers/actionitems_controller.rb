@@ -18,7 +18,7 @@ class ActionitemsController < ApplicationController
 
   def create
     @actionitem = Actionitem.new(actionitem_params)
-
+    @actionitem.due = Date.civil(params[:due][:year].to_i, params[:due][:month].to_i, params[:due][:day].to_i)
     if @actionitem.save
       redirect_to @actionitem
     else
@@ -28,6 +28,7 @@ class ActionitemsController < ApplicationController
 
   def update
     @actionitem = Actionitem.find(params[:id])
+    @actionitem.due = Date.civil(params[:due][:year].to_i, params[:due][:month].to_i, params[:due][:day].to_i)
 
     if @actionitem.update(actionitem_params)
       redirect_to @actionitem

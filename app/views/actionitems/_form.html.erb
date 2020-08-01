@@ -31,7 +31,7 @@
 
   <p>
     <%= form.label :due %><br>
-    <%= form.text_field :due %>
+    <%= select_date Date.today, prefix: :due %>
   </p>
 
   <p>
@@ -41,12 +41,12 @@
 
   <p>
     <%= form.label :urgency %><br>
-    <%= form.text_field :urgency %>
+    <%= form.select :urgency, ['Urgent', 'Not Urgent'] %>
   </p>
 
   <p>
     <%= form.label :importance %><br>
-    <%= form.text_field :importance %>
+    <%= form.select :importance, ['Important', 'Not Important'] %>
   </p>
 
   <p>
