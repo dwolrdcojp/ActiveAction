@@ -1,5 +1,59 @@
 <h1>New Action</h1>
 
-<%= render 'form' %>
+<%= form_with(model: @actionitem, local: true) do |form| %>
+  
+  <% if @actionitem.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@actionitem.errors.count, "error") %>
+        prohibited this action item from being saved:
+      </h2>
+      <ul>
+        <% @actionitem.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+  <p>
+    <%= form.label :focus %><br>
+    <%= form.text_field :focus %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.label :owner %><br>
+    <%= form.text_field :owner %>
+  </p>
+
+  <p>
+    <%= form.label :due %><br>
+    <%= select_date Date.today, prefix: :due %>
+  </p>
+
+  <p>
+    <%= form.label :resources %><br>
+    <%= form.text_area :resources %>
+  </p>
+
+  <p>
+    <%= form.label :urgency %><br>
+    <%= form.select :urgency, ['Urgent', 'Not Urgent'] %>
+  </p>
+
+  <p>
+    <%= form.label :importance %><br>
+    <%= form.select :importance, ['Important', 'Not Important'] %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
 
 <%= link_to 'Back', actionitems_path %> 

@@ -19,6 +19,7 @@ class ActionitemsController < ApplicationController
   def create
     @actionitem = Actionitem.new(actionitem_params)
     @actionitem.due = Date.civil(params[:due][:year].to_i, params[:due][:month].to_i, params[:due][:day].to_i)
+    @actionitem.status = "Open"
     if @actionitem.save
       redirect_to @actionitem
     else
@@ -28,7 +29,10 @@ class ActionitemsController < ApplicationController
 
   def update
     @actionitem = Actionitem.find(params[:id])
+    
     @actionitem.due = Date.civil(params[:due][:year].to_i, params[:due][:month].to_i, params[:due][:day].to_i)
+    
+    @actionitem.completion = Date.civil(params[:completion][:year].to_i, params[:completion][:month].to_i, params[:completion][:day].to_i) unless params[:completion][:year].blank?
 
     if @actionitem.update(actionitem_params)
       redirect_to @actionitem
@@ -46,7 +50,7 @@ class ActionitemsController < ApplicationController
 
   private
     def actionitem_params
-      params.require(:actionitem).permit(:focus, :description, :owner, :due, :resources, :urgency, :importance)
+      params.require(:actionitem).permit(:focus, :description, :owner, :due, :resources, :urgency, :importance, :status, :updates, :completion)
     end
 
 end

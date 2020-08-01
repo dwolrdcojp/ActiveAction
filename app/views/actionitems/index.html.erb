@@ -30,8 +30,8 @@
       <td><%= actionitem.status %></td>
       <td><%= actionitem.updates %></td>
       <td><%= actionitem.completion %></td>
-      <td><%= actionitem.created_at %></td>
-      <td><%= actionitem.updated_at %></td>
+      <td><%= actionitem.created_at.strftime("%F") %></td>
+      <td><%= actionitem.updated_at.strftime("%F") %></td>
       <td><%= link_to 'Show', actionitem_path(actionitem) %></td>
       <td><%= link_to 'Edit', edit_actionitem_path(actionitem) %></td>
       <td><%= link_to 'Destroy', actionitem_path(actionitem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
