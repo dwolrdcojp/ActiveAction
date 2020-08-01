@@ -20,6 +20,15 @@ class ActionitemsController < ApplicationController
     @actionitem = Actionitem.new(actionitem_params)
     @actionitem.due = Date.civil(params[:due][:year].to_i, params[:due][:month].to_i, params[:due][:day].to_i)
     @actionitem.status = "Open"
+
+    if @actionitem.urgency == "Urgent" && @actionitem.importance == "Important"
+      @actionitem.priority = "High"
+    elsif @actionitem.urgency == "Not Urgent" && @actionitem.importance == "Not Important"
+      @actionitem.priority = "Low"
+    else
+      @actionitem.priority = "Medium"
+    end
+
     if @actionitem.save
       redirect_to @actionitem
     else
@@ -31,7 +40,6 @@ class ActionitemsController < ApplicationController
     @actionitem = Actionitem.find(params[:id])
     
     @actionitem.due = Date.civil(params[:due][:year].to_i, params[:due][:month].to_i, params[:due][:day].to_i)
-    
     @actionitem.completion = Date.civil(params[:completion][:year].to_i, params[:completion][:month].to_i, params[:completion][:day].to_i) unless params[:completion][:year].blank?
 
     if @actionitem.update(actionitem_params)
@@ -50,7 +58,7 @@ class ActionitemsController < ApplicationController
 
   private
     def actionitem_params
-      params.require(:actionitem).permit(:focus, :description, :owner, :due, :resources, :urgency, :importance, :status, :updates, :completion)
+      params.require(:actionitem).permit(:focus, :description, :owner, :due, :resources, :urgency, :importance, :status, :updates, :completion, :priority)
     end
 
 end

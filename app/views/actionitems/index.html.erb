@@ -5,34 +5,42 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Created on:</th>
       <th scope="col">Focus</th>
       <th scope="col">Description</th>
       <th scope="col">Owner</th>
       <th scope="col">Due</th>
       <th scope="col">Resources</th>
-      <th scope="col">Urgency</th>
-      <th scope="col">Importance</th>
+      <th scope="col">Priority</th>
       <th scope="col">Status</th>
       <th scope="col">Updates</th>
       <th scope="col">Completion</th>
-      <th scope="col">Created</th>
-      <th scope="col">Updated</th>
+      <th scope="col">Updated on:</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
   <% @actionitems.each do |actionitem| %>
     <tr>
+      <td><%= actionitem.id %></td>
+      <td><%= actionitem.created_at.strftime("%F") %></td>
       <td><%= actionitem.focus %></td>
       <td><%= link_to actionitem.description, actionitem_path(actionitem) %></td>
       <td><%= actionitem.owner %></td>
       <td><%= actionitem.due %></td>
       <td><%= actionitem.resources %></td>
-      <td><%= actionitem.urgency %></td>
-      <td><%= actionitem.importance %></td>
+      <td class="<% if actionitem.priority == 'High' %>
+                  <%= 'btn btn-danger btn-block' %>
+                 <% elsif actionitem.priority == 'Medium' %>
+                  <%= 'btn btn-warning btn-block' %>
+                 <% else %>
+                  <%= 'btn btn-success btn-block' %>
+                 <% end %>"><%= actionitem.priority %></td>
       <td><%= actionitem.status %></td>
       <td><%= actionitem.updates %></td>
       <td><%= actionitem.completion %></td>
-      <td><%= actionitem.created_at.strftime("%F") %></td>
       <td><%= actionitem.updated_at.strftime("%F") %></td>
       <td><%= link_to fa_icon("pencil 2x"), edit_actionitem_path(actionitem), style: 'color:#00cc44;' %></td>
       <td><%= link_to fa_icon("trash 2x"), actionitem_path(actionitem), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
