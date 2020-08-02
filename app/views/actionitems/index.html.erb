@@ -29,7 +29,7 @@
       <td><%= actionitem.focus %></td>
       <td><%= link_to actionitem.description, actionitem_path(actionitem) %></td>
       <td><%= actionitem.owner %></td>
-      <td><%= actionitem.due %></td>
+      <td><%= "#{actionitem.due}   " %><%= actionitem.due < Date.today() ? fa_icon("flag", style: 'color:#ff4800;') : "" %></td>
       <td><%= actionitem.resources %></td>
       <td class="<% if actionitem.priority == 'High' %>
                   <%= 'btn btn-danger btn-block' %>
