@@ -1,3 +1,5 @@
+<div class="container">
+
 <h1>New Action</h1>
 
 <%= form_with(model: @actionitem, local: true) do |form| %>
@@ -15,7 +17,7 @@
       </ul>
     </div>
     <% end %>
-<div class="container">
+
   <p>
     <div class="form-group">
       <%= form.label :focus %><br>
@@ -35,7 +37,7 @@
 
   <p>
     <%= form.label :due %><br>
-    <%= select_date Date.today, prefix: :due %>
+    <%= select_date Date.today, {prefix: :due}, :class => 'form-control' %>
   </p>
 
   <p>
@@ -45,18 +47,19 @@
 
   <p>
     <%= form.label :urgency %><br>
-    <%= form.select :urgency, ['Urgent', 'Not Urgent'], :class => "form-control" %>
+    <%= form.select :urgency, ['Urgent', 'Not Urgent'], {}, :class => "form-control" %>
   </p>
 
   <p>
     <%= form.label :importance %><br>
-    <%= form.select :importance, ['Important', 'Not Important'], :class => "form-control" %>
+    <%= form.select :importance, ['Important', 'Not Important'], {}, :class => "form-control" %>
   </p>
 
   <p>
-    <%= form.submit %>
+    <%= form.submit 'Submit Action Item', :class => 'btn btn-primary' %>
   </p>
   <% end %>
-</div>
 
 <%= link_to 'Back', actionitems_path %> 
+
+</div>

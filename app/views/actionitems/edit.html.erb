@@ -1,4 +1,7 @@
-<h1>Edit Action</h1>
+
+<div class="container">
+<h1>Edit Action Item</h1>
+
 
 <%= form_with(model: @actionitem, local: true) do |form| %>
   
@@ -15,45 +18,54 @@
       </ul>
     </div>
     <% end %>
-
+<div class="form-group">
   <p>
     <%= form.label :focus %><br>
-    <%= form.text_field :focus %>
+    <%= form.text_field :focus, :class => "form-control" %>
   </p>
-
+</div>
+<div class="form-group">
   <p>
     <%= form.label :description %><br>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, :class => "form-control" %>
   </p>
-
+</div>
+<div class="form-group">
   <p>
     <%= form.label :owner %><br>
-    <%= form.text_field :owner %>
+    <%= form.text_field :owner, :class => "form-control" %>
   </p>
-
+</div>
   <p>
     <%= form.label :resources %><br>
-    <%= form.text_area :resources %>
+    <%= form.text_area :resources, :class => "form-control" %>
   </p>
-
+<div class="form-group">
   <p>
     <%= form.label :status %><br>
-    <%= form.select :status, ['Open', 'In Progress', 'Review', 'Completed'] %>
+    <%= form.select :status, ['Open', 'In Progress', 'Review', 'Completed'], {}, :class => 'form-control' %>
   </p>
-
+</div>
+<div class="form-group">
   <p>
     <%= form.label :updates %><br>
-    <%= form.text_area :updates %>
+    <%= form.text_area :updates, :class => "form-control" %>
   </p>
-  
+</div>
+<div class="form-group">
   <p>
     <%= form.label :completion %><br>
-    <%= select_date nil, include_blank: true, prefix: :completion %>
+    <%= select_date nil, {include_blank: true, prefix: :completion}, :class =>'form-control' %>
   </p>
-
+</div>
+<div class="form-group">
   <p>
-    <%= form.submit %>
+    <%= form.submit 'Submit Changes', :class => 'btn btn-primary' %>
   </p>
+</div>
   <% end %>
 
+
+
 <%= link_to 'Back', actionitems_path %> 
+</div>
