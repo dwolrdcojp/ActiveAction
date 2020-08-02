@@ -1,7 +1,7 @@
 class ActionitemsController < ApplicationController
 
   def index
-    @actionitems = Actionitem.all
+    @actionitems = Actionitem.all.sort.reverse
   end
 
   def show
@@ -39,7 +39,6 @@ class ActionitemsController < ApplicationController
   def update
     @actionitem = Actionitem.find(params[:id])
     
-    @actionitem.due = Date.civil(params[:due][:year].to_i, params[:due][:month].to_i, params[:due][:day].to_i)
     @actionitem.completion = Date.civil(params[:completion][:year].to_i, params[:completion][:month].to_i, params[:completion][:day].to_i) unless params[:completion][:year].blank?
 
     if @actionitem.update(actionitem_params)
