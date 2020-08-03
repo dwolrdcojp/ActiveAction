@@ -26,6 +26,9 @@ gem 'devise'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+
+gem 'chartkick'
+gem 'groupdate'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

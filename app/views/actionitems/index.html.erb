@@ -1,8 +1,14 @@
 <div class="container-fluid">
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Action Items</h1></div>
+  <div class="col-sm-4">
+    <%= pie_chart Actionitem.group(:status).count, colors: ["#FF0000", "#00B431", "#FFF000"], id: "status-chart", width: "200px", height: "200px", legend: false, library: {title: {display: true, text: "Status Chart"}} %> 
+    <%= link_to 'New Action Item', new_actionitem_path, class: "btn btn-primary", style: "float: right" %>
+  </div>
+</div>
 
-<h1>Action Items</h1>
-<%= link_to 'New Action Item', new_actionitem_path, class: "btn btn-primary", style: "float: right" %>
-<br><br>
+<br>
 
 <table class="table">
   <thead>
