@@ -33,7 +33,7 @@
   <% @actionitems.each do |actionitem| %>
     <tr>
       <td><%= actionitem.id %></td>
-      <td><%= actionitem.created_at.strftime("%-m/%-d") %></td>
+      <td><%= actionitem.created_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
       <td><%= actionitem.focus %></td>
       <td>
         <%= link_to actionitem.description, actionitem_path(actionitem) %>
@@ -41,7 +41,7 @@
         <%= actionitem.comments.any? ? "#{actionitem.comments.count}" : "" %>
       </td>
       <td><%= actionitem.owner %></td>
-      <td><%= "#{actionitem.due.strftime("%-m/%-d")}   " %><%= actionitem.due < Date.today() && actionitem.status != "Completed" ? fa_icon("flag", style: 'color:#ff4800;') : "" %></td>
+      <td><%= "#{actionitem.due.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d")}   " %><%= actionitem.due < Date.today() && actionitem.status != "Completed" ? fa_icon("flag", style: 'color:#ff4800;') : "" %></td>
       <td><%= actionitem.resources %></td>
       <td class="<% if actionitem.priority == 'High' %>
                   <%= 'btn btn-danger btn-block' %>
@@ -52,8 +52,8 @@
                  <% end %>"><%= actionitem.priority %></td>
       <td><%= actionitem.status %></td>
       <td><%= actionitem.updates %></td>
-      <td><%= actionitem.completion %></td>
-      <td><%= actionitem.updated_at.strftime("%-m/%-d") %></td>
+      <td><%= !actionitem.completion.nil? ? actionitem.completion.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") : ""  %></td>
+      <td><%= actionitem.updated_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
       <td><%= link_to fa_icon("pencil 2x"), edit_actionitem_path(actionitem), style: 'color:#00cc44;' %></td>
       <td><%= link_to fa_icon("trash 2x"), actionitem_path(actionitem), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
     </tr>

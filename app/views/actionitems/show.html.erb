@@ -21,17 +21,17 @@
   <tbody>
     <tr>
       <td><%= @actionitem.id %></td>
-      <td><%= @actionitem.created_at %></td>
+      <td><%= @actionitem.created_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
       <td><%= @actionitem.focus %></td>
       <td><%= @actionitem.description %></td>
       <td><%= @actionitem.owner %></td>
-      <td><%= @actionitem.due %></td>
+      <td><%= @actionitem.due.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d")%></td>
       <td><%= @actionitem.resources %></td>
       <td><%= "priority" %></td>
       <td><%= @actionitem.status %></td>
       <td><%= @actionitem.updates %></td>
-      <td><%= @actionitem.completion %></td>
-      <td><%= @actionitem.updated_at %></td>
+      <td><%= !@actionitem.completion.nil? ? @actionitem.completion.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") : "" %></td>
+      <td><%= @actionitem.updated_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
       <td><%= link_to fa_icon("pencil 2x"), edit_actionitem_path(@actionitem), style: 'color:#00cc44;' %></td>
       <td><%= link_to fa_icon("trash 2x"), actionitem_path(@actionitem), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %>
     </tr>
