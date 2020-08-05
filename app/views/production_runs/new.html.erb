@@ -34,13 +34,13 @@
   </p>
 
   <p>
-    <%= form.label :starttime %><br>
-    <%= select_time Time.now, {prefix: :starttime}, :class => 'form-control' %>
+    <%= form.label :start_time %><br>
+    <%= select_time nil, {prefix: :start_time, include_blank: true}, :class => 'form-control' %>
   </p>
 
   <p>
-    <%= form.label :stoptime %><br>
-    <%= select_time Time.now, {prefix: :stoptime}, :class => 'form-control' %>
+    <%= form.label :stop_time %><br>
+    <%= select_time nil, {prefix: :stop_time, include_blank: true}, :class => 'form-control' %>
   </p>
 
   <p>

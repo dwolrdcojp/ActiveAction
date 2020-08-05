@@ -1,0 +1,54 @@
+
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Production Runs</h1></div>
+  <div class="col-sm-4">
+    <%= link_to 'New Production Run', new_production_run_path, class: "btn btn-primary", style: "float: right" %>
+  </div>
+</div>
+
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Created</th>
+      <th scope="col">Date</th>
+      <th scope="col">Line</th>
+      <th scope="col">Shift</th>
+      <th scope="col">Supervisor</th>
+      <th scope="col">Lead</th>
+      <th scope="col">Operator</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">Stop Time</th>
+      <th scope="col">Updated</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+
+  </thead>
+  <tbody>
+  <% @productionruns.each do |productionrun| %>
+    <tr>
+      <td><%= productionrun.id %></td>
+      <td><%= productionrun.created_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
+      <td><%= productionrun.date %></td>
+      <td><%= productionrun.line %></td>
+      <td><%= productionrun.shift %></td>
+      <td><%= productionrun.supervisor %></td>
+      <td><%= productionrun.lead %></td>
+      <td><%= productionrun.operator %></td>
+      <td><%= productionrun.start_time %></td>
+      <td><%= productionrun.stop_time %></td>
+      <td><%= productionrun.updated_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
+      <td><%= link_to fa_icon("pencil 2x"), edit_production_run_path(productionrun), style: 'color:#00cc44;' %></td>
+      <td><%= link_to fa_icon("trash 2x"), production_run_path(productionrun), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+</div>
+
