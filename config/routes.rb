@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :production_runs
+
   root 'welcome#index'
 
 

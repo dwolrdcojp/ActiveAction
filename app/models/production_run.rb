@@ -1,0 +1,2 @@
+class ProductionRun < ApplicationRecord
+end

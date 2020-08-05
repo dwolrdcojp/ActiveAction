@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2020-08-05
+  line: MyString
+  shift: MyString
+  supervisor: MyString
+  lead: MyString
+  operator: MyString
+  starttime: 2020-08-05 00:16:06
+  stoptime: 2020-08-05 00:16:06
+
+two:
+  date: 2020-08-05
+  line: MyString
+  shift: MyString
+  supervisor: MyString
+  lead: MyString
+  operator: MyString
+  starttime: 2020-08-05 00:16:06
+  stoptime: 2020-08-05 00:16:06
