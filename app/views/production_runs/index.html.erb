@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid">
 <div class="row">
   <div class="col-sm-8">
@@ -33,9 +31,9 @@
   <tbody>
   <% @productionruns.each do |productionrun| %>
     <tr>
-      <td><%= productionrun.id %></td>
+      <td><%= link_to productionrun.id, production_run_path(productionrun)%></td>
       <td><%= productionrun.created_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
-      <td><%= productionrun.date %></td>
+      <td><%= productionrun.date.strftime("%-m/%-d") %></td>
       <td><%= productionrun.line %></td>
       <td><%= productionrun.shift %></td>
       <td><%= productionrun.supervisor %></td>

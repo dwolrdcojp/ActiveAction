@@ -1,0 +1,59 @@
+<%= form_with model: @productionrun, local: true do |form| %> 
+
+  <% if @productionrun.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@productionrun.errors.count, "error") %> prohibited this production run from being saved:
+      </h2>
+      <ul>
+        <% @productionrun.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :date %><br>
+    <%= select_date Date.today, {prefix: :date}, :class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= form.label :line %><br>
+    <%= form.text_field :line, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :shift %><br>
+    <%= form.text_field :shift, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :supervisor %><br>
+    <%= form.text_field :supervisor, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :lead %><br>
+    <%= form.text_field :lead, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :operator %><br>
+    <%= form.text_field :operator, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :start_time %><br>
+    <%= select_time nil, {prefix: :start_time, include_blank: true}, :class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= form.label :stop_time %><br>
+    <%= select_time nil, {prefix: :stop_time, include_blank: true}, :class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= form.submit 'Create Production Run', :class => 'btn btn-primary' %>
+  </p>
+  <% end %>

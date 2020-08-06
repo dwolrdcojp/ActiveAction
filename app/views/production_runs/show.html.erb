@@ -1,40 +1,50 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Production Run: #<%= @productionrun.id %></h1></div>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @productionrun.date %>
-</p>
+<br>
 
-<p>
-  <strong>Line:</strong>
-  <%= @productionrun.line %>
-</p>
- 
-<p>
-  <strong>Shift:</strong>
-  <%= @productionrun.shift %>
-</p>
- 
-<p>
-  <strong>Supervisor:</strong>
-  <%= @productionrun.supervisor %>
-</p>
- 
-<p>
-  <strong>Lead:</strong>
-  <%= @productionrun.lead %>
-</p>
- 
-<p>
-  <strong>Operator:</strong>
-  <%= @productionrun.operator %>
-</p>
- 
-<p>
-  <strong>Start Time:</strong>
-  <%= @productionrun.start_time %>
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Created</th>
+      <th scope="col">Date</th>
+      <th scope="col">Line</th>
+      <th scope="col">Shift</th>
+      <th scope="col">Supervisor</th>
+      <th scope="col">Lead</th>
+      <th scope="col">Operator</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">Stop Time</th>
+      <th scope="col">Updated</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
 
-<p>
-  <strong>Stop Time:</strong>
-  <%= @productionrun.stop_time %>
-</p>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @productionrun.id %></td>
+      <td><%= @productionrun.created_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
+      <td><%= @productionrun.date.strftime("%-m/%-d") %></td>
+      <td><%= @productionrun.line %></td>
+      <td><%= @productionrun.shift %></td>
+      <td><%= @productionrun.supervisor %></td>
+      <td><%= @productionrun.lead %></td>
+      <td><%= @productionrun.operator %></td>
+      <td><%= @productionrun.start_time %></td>
+      <td><%= @productionrun.stop_time %></td>
+      <td><%= @productionrun.updated_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
+      <td><%= link_to fa_icon("pencil 2x"), edit_production_run_path(@productionrun), style: 'color:#00cc44;' %></td>
+      <td><%= link_to fa_icon("trash 2x"), production_run_path(@productionrun), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+</tbody>
+</table>
+</div>
+
+
+<%= link_to 'Edit', edit_production_run_path(@productionrun) %> |
+<%= link_to 'Back', production_runs_path %>
