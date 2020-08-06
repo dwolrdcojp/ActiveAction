@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hour: 
+  product: 
+  plan_throughput: 
+  actual_throughput: 
+  plan_labor: 
+  actual_labor: 
+  downtime: 
+  waste: 
+  rework: 
+  yield: 1.5
+  production_run: one
+
+two:
+  hour: 
+  product: 
+  plan_throughput: 
+  actual_throughput: 
+  plan_labor: 
+  actual_labor: 
+  downtime: 
+  waste: 
+  rework: 
+  yield: 1.5
+  production_run: two

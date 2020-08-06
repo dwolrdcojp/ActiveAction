@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :production_runs
+  resources :production_runs do
+    resources :production_hours
+  end
 
   root 'welcome#index'
 

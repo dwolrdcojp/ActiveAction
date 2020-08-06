@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_05_082856) do
+ActiveRecord::Schema.define(version: 2020_08_06_083623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,23 @@ ActiveRecord::Schema.define(version: 2020_08_05_082856) do
     t.index ["actionitem_id"], name: "index_comments_on_actionitem_id"
   end
 
+  create_table "production_hours", force: :cascade do |t|
+    t.integer "hour"
+    t.string "product"
+    t.float "plan_throughput"
+    t.float "actual_throughput"
+    t.float "plan_labor"
+    t.float "actual_labor"
+    t.float "downtime"
+    t.float "waste"
+    t.float "rework"
+    t.float "yield"
+    t.bigint "production_run_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["production_run_id"], name: "index_production_hours_on_production_run_id"
+  end
+
   create_table "production_runs", force: :cascade do |t|
     t.date "date"
     t.string "line"
@@ -66,4 +83,5 @@ ActiveRecord::Schema.define(version: 2020_08_05_082856) do
   end
 
   add_foreign_key "comments", "actionitems"
+  add_foreign_key "production_hours", "production_runs"
 end

@@ -45,6 +45,100 @@
 </table>
 </div>
 
+  
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-8">
+    <h2>Production Hours</h2>
+  </div>
+</div>
+
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Hour</th>
+      <th scope="col">Product</th>
+      <th scope="col">Plan Throughput</th>
+      <th scope="col">Actual Throughput</th>
+      <th scope="col">Plan Labor</th>
+      <th scope="col">Actual Labor</th>
+      <th scope="col">Downtime</th>
+      <th scope="col">Waste</th>
+      <th scope="col">Rework</th>
+      <th scope="col">Yield</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+
+  </thead>
+  <tbody>
+    <%= render @productionrun.production_hours %>
+  </tbody>
+</table>
+</div>
+
+
+<h2>Add a Production Hour:</h2>
+<%= form_with(model: [@productionrun, @productionrun.production_hours.build], local: true) do |form| %>
+  <p>
+
+  <p>
+    <%= form.label :hour %><br>
+    <%= form.text_field :hour, :class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= form.label :product %><br>
+    <%= form.text_field :product, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :plan_throughput %><br>
+    <%= form.text_field :plan_throughput, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :actual_throughput %><br>
+    <%= form.text_field :actual_throughput, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :plan_labor %><br>
+    <%= form.text_field :plan_labor, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :actual_labor %><br>
+    <%= form.text_field :actual_labor, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :downtime %><br>
+    <%= form.text_field :downtime, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :waste %><br>
+    <%= form.text_field :waste, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :rework %><br>
+    <%= form.text_field :rework, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :yield %><br>
+    <%= form.text_field :yield, :class => "form-control" %>
+  </p>
+
+  <p>
+    <%= form.submit 'Add Production Hour', :class => 'btn btn-primary' %>
+  </p>
+ <% end %>
+
 
 <%= link_to 'Edit', edit_production_run_path(@productionrun) %> |
 <%= link_to 'Back', production_runs_path %>
