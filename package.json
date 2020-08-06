@@ -14,5 +14,9 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/dwolrdcojp/ActiveAction.git",
+  "author": "Max Schrementi <dwolrdcojp@gmail.com>",
+  "license": "MIT"
 }

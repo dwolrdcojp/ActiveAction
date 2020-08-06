@@ -24,7 +24,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 
 gem 'bootstrap'
-gem 'jquery-rails'
 gem 'font-awesome-rails'
 
 gem 'chartkick'
