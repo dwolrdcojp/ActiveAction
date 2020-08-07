@@ -6,11 +6,27 @@ class ProductionHoursController < ApplicationController
     redirect_to production_run_path(@productionrun)
   end
 
+  def edit
+    @productionrun = ProductionRun.find(params[:production_run_id])
+    @production_hour = @productionrun.production_hours.find(params[:id])
+  end
+
   def destroy
     @productionrun = ProductionRun.find(params[:production_run_id])
     @production_hour = @productionrun.production_hours.find(params[:id])
     @production_hour.destroy
     redirect_to production_run_path(@productionrun)
+  end
+
+  def update
+    @productionrun = ProductionRun.find(params[:production_run_id])
+    @production_hour = @productionrun.production_hours.find(params[:id])
+
+    if @production_hour.update(production_hour_params)
+      redirect_to @productionrun
+    else
+      render 'edit'
+    end
   end
 
   private

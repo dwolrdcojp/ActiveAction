@@ -86,7 +86,7 @@
     <td><%= production_hour.waste %></td>
     <td><%= production_hour.rework %></td>
     <td><%= production_hour.yield %></td>
-    <td><%= link_to fa_icon("pencil 2x"), edit_production_run_production_hour_path(production_hour), style: 'color:#00cc44;' %></td>
+    <td><%= link_to fa_icon("pencil 2x"), edit_production_run_production_hour_path(production_hour.production_run, production_hour), style: 'color:#00cc44;' %></td>
     <td><%= link_to fa_icon("trash 2x"), [production_hour.production_run, production_hour], method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
