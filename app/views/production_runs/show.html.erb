@@ -94,10 +94,9 @@
 </table>
 </div>
 
-
+<div class="container">
 <h2>Add a Production Hour:</h2>
 <%= form_with(model: [@productionrun, @productionrun.production_hours.build], local: true) do |form| %>
-  <p>
 
   <p>
     <%= form.label :hour %><br>
@@ -157,3 +156,4 @@
 
 <%= link_to 'Edit', edit_production_run_path(@productionrun) %> |
 <%= link_to 'Back', production_runs_path %>
+</div
