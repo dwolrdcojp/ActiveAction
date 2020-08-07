@@ -6,6 +6,13 @@ class ProductionHoursController < ApplicationController
     redirect_to production_run_path(@productionrun)
   end
 
+  def destroy
+    @productionrun = ProductionRun.find(params[:production_run_id])
+    @production_hour = @productionrun.production_hours.find(params[:id])
+    @production_hour.destroy
+    redirect_to production_run_path(@productionrun)
+  end
+
   private
   def production_hour_params
     params.require(:production_hour).permit(:hour, :product, :plan_throughput, :actual_throughput, 
