@@ -10,7 +10,6 @@
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Created</th>
       <th scope="col">Date</th>
       <th scope="col">Line</th>
       <th scope="col">Shift</th>
@@ -19,7 +18,6 @@
       <th scope="col">Operator</th>
       <th scope="col">Start Time</th>
       <th scope="col">Stop Time</th>
-      <th scope="col">Updated</th>
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
@@ -28,16 +26,14 @@
   <tbody>
     <tr>
       <td><%= @productionrun.id %></td>
-      <td><%= @productionrun.created_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
       <td><%= @productionrun.date.strftime("%-m/%-d") %></td>
       <td><%= @productionrun.line %></td>
       <td><%= @productionrun.shift %></td>
       <td><%= @productionrun.supervisor %></td>
       <td><%= @productionrun.lead %></td>
       <td><%= @productionrun.operator %></td>
-      <td><%= @productionrun.start_time %></td>
-      <td><%= @productionrun.stop_time %></td>
-      <td><%= @productionrun.updated_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
+      <td><%= @productionrun.start_time[0..1]%>:<%= @productionrun.start_time[2..3]%></td>
+      <td><%= @productionrun.stop_time[0..1]%>:<%= @productionrun.stop_time[2..3]%></td>
       <td><%= link_to fa_icon("pencil 2x"), edit_production_run_path(@productionrun), style: 'color:#00cc44;' %></td>
       <td><%= link_to fa_icon("trash 2x"), production_run_path(@productionrun), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
     </tr>
@@ -62,8 +58,12 @@
       <th scope="col">Product</th>
       <th scope="col">Plan Throughput</th>
       <th scope="col">Actual Throughput</th>
+      <th scope="col">Attainment</th>
       <th scope="col">Plan Labor</th>
       <th scope="col">Actual Labor</th>
+      <th scope="col">Plan Efficiency</th>
+      <th scope="col">Actual Efficiency</th>
+      <th scope="col">Attainment</th>
       <th scope="col">Downtime</th>
       <th scope="col">Waste</th>
       <th scope="col">Rework</th>
@@ -80,8 +80,12 @@
     <td><%= production_hour.product %></td>
     <td><%= production_hour.plan_throughput %></td>
     <td><%= production_hour.actual_throughput %></td>
+    <td><%= (production_hour.actual_throughput / production_hour.plan_throughput).round(2) *100 %>%</td>
     <td><%= production_hour.plan_labor %></td>
     <td><%= production_hour.actual_labor %></td>
+    <td><%= (production_hour.plan_throughput / production_hour.plan_labor).round(2) %></td>
+    <td><%= (production_hour.actual_throughput / production_hour.actual_labor).round(2) %></td>
+    <td><%= ((production_hour.actual_throughput / production_hour.actual_labor) / (production_hour.plan_throughput / production_hour.plan_labor)).round(3) * 100 %>%</td>
     <td><%= production_hour.downtime %></td>
     <td><%= production_hour.waste %></td>
     <td><%= production_hour.rework %></td>
@@ -93,6 +97,46 @@
   </tbody>
 </table>
 </div>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Total</th>
+        <th scope="col">Plan Throughput</th>
+        <th scope="col">Actual Throughput</th>
+        <th scope="col">Attainment</th>
+        <th scope="col">Plan Labor</th>
+        <th scope="col">Actual Labor</th>
+        <th scope="col">Plan Efficiency</th>
+        <th scope="col">Actual Efficiency</th>
+        <th scope="col">Attainment</th>
+        <th scope="col">Downtime</th>
+        <th scope="col">Waste</th>
+        <th scope="col">Rework</th>
+        <th scope="col">Yield</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Total</td>
+        <td><%= @productionrun.production_hours.sum(:plan_throughput) %></td>
+        <td><%= @productionrun.production_hours.sum(:actual_throughput) %></td>
+        <td><%= (@productionrun.production_hours.sum(:actual_throughput) / @productionrun.production_hours.sum(:plan_throughput)).round(2) * 100 %>%</td>
+        <td><%= @productionrun.production_hours.sum(:plan_labor) %></td>
+        <td><%= @productionrun.production_hours.sum(:actual_labor) %></td>
+        <td><%= (@productionrun.production_hours.sum(:plan_throughput) / @productionrun.production_hours.sum(:plan_labor)).round(2)  %></td>
+        <td><%= (@productionrun.production_hours.sum(:actual_throughput) / @productionrun.production_hours.sum(:actual_labor)).round(2)  %></td>
+        <td><%= ((@productionrun.production_hours.sum(:actual_throughput) / @productionrun.production_hours.sum(:actual_labor)) / (@productionrun.production_hours.sum(:plan_throughput) / @productionrun.production_hours.sum(:plan_labor)) ).round(2) * 100%>%</td>
+          <td><%= @productionrun.production_hours.sum(:downtime) %></td>
+          <td><%= @productionrun.production_hours.sum(:waste) %></td>
+          <td><%= @productionrun.production_hours.sum(:rework) %></td>
+          <td><%= @productionrun.production_hours.sum(:yield) %></td>
+      </tr>
+  </tbody>
+  </table>
+</div>
+
 
 <div class="container">
 <h2>Add a Production Hour:</h2>
