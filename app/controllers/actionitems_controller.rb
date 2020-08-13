@@ -1,7 +1,7 @@
 class ActionitemsController < ApplicationController
 
   def index
-    @actionitems = Actionitem.filter(params.slice(:focus, :owner, :due, :priority, :status))
+    @actionitems = Actionitem.filter(params.slice(:focus, :owner, :due, :priority, :status)).order("id DESC")
   end
 
   def show
