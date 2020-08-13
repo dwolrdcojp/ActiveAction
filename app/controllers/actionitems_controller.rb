@@ -1,7 +1,7 @@
 class ActionitemsController < ApplicationController
 
   def index
-    @actionitems = Actionitem.all.sort.reverse
+    @actionitems = Actionitem.filter(params.slice(:focus, :owner, :due, :priority, :status))
   end
 
   def show
@@ -58,6 +58,10 @@ class ActionitemsController < ApplicationController
   private
     def actionitem_params
       params.require(:actionitem).permit(:focus, :description, :owner, :due, :resources, :urgency, :importance, :status, :updates, :completion, :priority)
+    end
+
+    def filtering_params(params)
+      params.slice(:focus, :owner, :due, :priority, :status)
     end
 
 end
