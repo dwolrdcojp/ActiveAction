@@ -1,7 +1,7 @@
 class ProductionRunsController < ApplicationController
 
   def index
-    @productionruns = ProductionRun.all.sort.reverse
+    @productionruns = ProductionRun.filter(params.slice(:date, :shift, :line, :supervisor)).order("id DESC")
   end
 
   def show
@@ -52,5 +52,9 @@ class ProductionRunsController < ApplicationController
   private
     def production_run_params
       params.require(:production_run).permit(:date, :line, :shift, :supervisor, :lead, :operator, :start_time, :stop_time)
+    end
+
+    def filtering_params(params)
+      params.slice(:date, :shift, :line, :supervisor)
     end
 end
