@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'actionitems' %>
+
 <div class="container-fluid">
     <h1><%= link_to "Action Items", actionitems_path %></h1>
 
@@ -57,18 +59,17 @@
       <th scope="col">Updates</th>
       <th scope="col">Completion</th>
       <th scope="col">Updated</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
   <% @actionitems.each do |actionitem| %>
-    <tr>
+    
+    <tr data-link="<%= actionitem_path(actionitem) %>" style="cursor:pointer;">
       <td><%= actionitem.id %></td>
       <td><%= actionitem.created_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
       <td><%= actionitem.focus %></td>
       <td>
-        <%= link_to actionitem.description, actionitem_path(actionitem) %>
+        <%= actionitem.description %>
         <%= actionitem.comments.any? ? fa_icon("comment-o") : "" %>
         <%= actionitem.comments.any? ? "#{actionitem.comments.count}" : "" %>
       </td>
@@ -86,8 +87,6 @@
       <td><%= actionitem.updates %></td>
       <td><%= !actionitem.completion.nil? ? actionitem.completion.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") : ""  %></td>
       <td><%= actionitem.updated_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
-      <td><%= link_to fa_icon("pencil 2x"), edit_actionitem_path(actionitem), style: 'color:#00cc44;' %></td>
-      <td><%= link_to fa_icon("trash 2x"), actionitem_path(actionitem), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </tbody>

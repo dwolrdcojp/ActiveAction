@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'actionitems' %>
+
 <div class="container-fluid">
 <div class="row">
   <div class="col-sm-8">
@@ -67,15 +69,14 @@
       <th scope="col">Downtime</th>
       <th scope="col">Waste</th>
       <th scope="col">Rework</th>
-      <th scope="col">Yield</th>
-      <th scope="col">Edit</th>
+      <th scope="col">Yield</th>     
       <th scope="col">Delete</th>
     </tr>
 
   </thead>
   <tbody>
     <% @productionrun.production_hours.each do |production_hour| %>
-  <tr>
+  <tr data-link="<%= edit_production_run_production_hour_path(production_hour.production_run, production_hour) %>" style="cursor:pointer;">
     <td><%= production_hour.hour %></td>
     <td><%= production_hour.product %></td>
     <td><%= production_hour.plan_throughput %></td>
@@ -90,7 +91,6 @@
     <td><%= production_hour.waste %></td>
     <td><%= production_hour.rework %></td>
     <td><%= production_hour.yield %></td>
-    <td><%= link_to fa_icon("pencil 2x"), edit_production_run_production_hour_path(production_hour.production_run, production_hour), style: 'color:#00cc44;' %></td>
     <td><%= link_to fa_icon("trash 2x"), [production_hour.production_run, production_hour], method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
