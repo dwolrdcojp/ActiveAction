@@ -13,8 +13,9 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Date</th>
-      <th scope="col">Line</th>
       <th scope="col">Shift</th>
+      <th scope="col">Area</th>
+      <th scope="col">Line</th>
       <th scope="col">Supervisor</th>
       <th scope="col">Lead</th>
       <th scope="col">Operator</th>
@@ -29,8 +30,9 @@
     <tr>
       <td><%= @productionrun.id %></td>
       <td><%= @productionrun.date.strftime("%-m/%-d") %></td>
-      <td><%= @productionrun.line %></td>
       <td><%= @productionrun.shift %></td>
+      <td><%= @productionrun.area %></td>
+      <td><%= @productionrun.line %></td>
       <td><%= @productionrun.supervisor %></td>
       <td><%= @productionrun.lead %></td>
       <td><%= @productionrun.operator %></td>

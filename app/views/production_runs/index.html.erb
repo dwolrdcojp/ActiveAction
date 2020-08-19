@@ -23,6 +23,10 @@
       <%= form.select :shift, ProductionRun.all.pluck(:shift).uniq, {:include_blank => true}, :class => "form-control" %>
     </div>
     <div class="col">
+      <%= form.label :area %><br>
+      <%= form.select :area, ProductionRun.all.pluck(:area).uniq, {:include_blank => true}, :class => "form-control" %>
+    </div>
+    <div class="col">
       <%= form.label :line %><br>
       <%= form.select :line, ProductionRun.all.pluck(:line).uniq, {:include_blank => true}, :class => "form-control" %>
     </div>
@@ -43,8 +47,9 @@
       <th scope="col">Id</th>
       <th scope="col">Created</th>
       <th scope="col">Date</th>
-      <th scope="col">Line</th>
       <th scope="col">Shift</th>
+      <th scope="col">Area</th>
+      <th scope="col">Line</th>
       <th scope="col">Supervisor</th>
       <th scope="col">Lead</th>
       <th scope="col">Operator</th>
@@ -62,8 +67,9 @@
       <td><%= link_to productionrun.id, production_run_path(productionrun)%></td>
       <td><%= productionrun.created_at.in_time_zone('Central Time (US & Canada)').strftime("%-m/%-d") %></td>
       <td><%= productionrun.date.strftime("%-m/%-d") %></td>
-      <td><%= productionrun.line %></td>
       <td><%= productionrun.shift %></td>
+      <td><%= productionrun.area %></td>
+      <td><%= productionrun.line %></td>
       <td><%= productionrun.supervisor %></td>
       <td><%= productionrun.lead %></td>
       <td><%= productionrun.operator %></td>

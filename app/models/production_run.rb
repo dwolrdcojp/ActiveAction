@@ -1,6 +1,6 @@
 class ProductionRun < ApplicationRecord
   has_many :production_hours
-  validates :date, :line, :shift, :supervisor, :lead, 
+  validates :date, :shift, :area, :line, :supervisor, :lead, 
             :operator, :start_time, presence: true
   scope :filter_by_date, -> (date) { where date: date }
   scope :filter_by_line, -> (line) { where line: line }

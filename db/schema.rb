@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_083623) do
+ActiveRecord::Schema.define(version: 2020_08_19_051459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,21 @@ ActiveRecord::Schema.define(version: 2020_08_06_083623) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["actionitem_id"], name: "index_comments_on_actionitem_id"
+  end
+
+  create_table "downtimes", force: :cascade do |t|
+    t.date "date"
+    t.string "shift"
+    t.string "area"
+    t.string "line"
+    t.string "equipment"
+    t.string "start_time"
+    t.string "stop_time"
+    t.integer "downtime"
+    t.string "reason_code"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "production_hours", force: :cascade do |t|
@@ -68,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_083623) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "start_time"
     t.string "stop_time"
+    t.string "area"
   end
 
   create_table "users", force: :cascade do |t|

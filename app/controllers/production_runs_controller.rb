@@ -1,7 +1,7 @@
 class ProductionRunsController < ApplicationController
 
   def index
-    @productionruns = ProductionRun.filter(params.slice(:date, :shift, :line, :supervisor)).order("id DESC")
+    @productionruns = ProductionRun.filter(params.slice(:date, :area, :shift, :line, :supervisor)).order("id DESC")
   end
 
   def show
@@ -51,10 +51,10 @@ class ProductionRunsController < ApplicationController
 
   private
     def production_run_params
-      params.require(:production_run).permit(:date, :line, :shift, :supervisor, :lead, :operator, :start_time, :stop_time)
+      params.require(:production_run).permit(:date, :shift, :area, :line, :supervisor, :lead, :operator, :start_time, :stop_time)
     end
 
     def filtering_params(params)
-      params.slice(:date, :shift, :line, :supervisor)
+      params.slice(:date, :shift, :area, :line, :supervisor)
     end
 end
