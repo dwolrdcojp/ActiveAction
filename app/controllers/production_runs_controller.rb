@@ -1,7 +1,7 @@
 class ProductionRunsController < ApplicationController
 
   def index
-    @productionruns = ProductionRun.filter(params.slice(:date, :area, :shift, :line, :supervisor)).order("id DESC")
+    @productionruns = ProductionRun.filter(params.slice(:date, :area, :shift, :line, :supervisor)).order("id DESC").page params[:page]
   end
 
   def show

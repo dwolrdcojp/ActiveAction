@@ -1,5 +1,7 @@
 <%= javascript_pack_tag 'actionitems' %>
 
+
+
 <p id="notice"><%= notice %></p>
 
 <%= column_chart Downtime.group(:date).sum(:downtime) %>
@@ -76,5 +78,7 @@
 </table>
 
 <br>
+
+<%= paginate @downtimes %>
 
 <%= link_to 'New Downtime', new_downtime_path %>
