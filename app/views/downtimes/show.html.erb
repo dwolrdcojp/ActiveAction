@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @downtime.date %>
+</p>
+
+<p>
+  <strong>Shift:</strong>
+  <%= @downtime.shift %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @downtime.area %>
+</p>
+
+<p>
+  <strong>Line:</strong>
+  <%= @downtime.line %>
+</p>
+
+<p>
+  <strong>Equipment:</strong>
+  <%= @downtime.equipment %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @downtime.start_time %>
+</p>
+
+<p>
+  <strong>Stop time:</strong>
+  <%= @downtime.stop_time %>
+</p>
+
+<p>
+  <strong>Downtime:</strong>
+  <%= @downtime.downtime %>
+</p>
+
+<p>
+  <strong>Reason code:</strong>
+  <%= @downtime.reason_code %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @downtime.comment %>
+</p>
+
+<%= link_to 'Edit', edit_downtime_path(@downtime) %> |
+<%= link_to 'Back', downtimes_path %>

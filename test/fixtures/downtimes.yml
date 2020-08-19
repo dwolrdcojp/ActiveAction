@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2020-08-18
+  shift: MyString
+  area: MyString
+  line: MyString
+  equipment: MyString
+  start_time: MyString
+  stop_time: MyString
+  downtime: 1
+  reason_code: MyString
+  comment: MyString
+
+two:
+  date: 2020-08-18
+  shift: MyString
+  area: MyString
+  line: MyString
+  equipment: MyString
+  start_time: MyString
+  stop_time: MyString
+  downtime: 1
+  reason_code: MyString
+  comment: MyString

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :downtimes
   devise_for :users
   resources :actionitems do
     resources :comments

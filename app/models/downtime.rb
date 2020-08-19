@@ -1,0 +1,2 @@
+class Downtime < ApplicationRecord
+end

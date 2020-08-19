@@ -1,0 +1,67 @@
+<%= form_with(model: downtime, local: true) do |form| %>
+  <% if downtime.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(downtime.errors.count, "error") %> prohibited this downtime from being saved:</h2>
+
+      <ul>
+        <% downtime.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shift %>
+    <%= form.text_field :shift %>
+  </div>
+
+  <div class="field">
+    <%= form.label :area %>
+    <%= form.text_field :area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :line %>
+    <%= form.text_field :line %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equipment %>
+    <%= form.text_field :equipment %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.text_field :start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stop_time %>
+    <%= form.text_field :stop_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :downtime %>
+    <%= form.number_field :downtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reason_code %>
+    <%= form.text_field :reason_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
