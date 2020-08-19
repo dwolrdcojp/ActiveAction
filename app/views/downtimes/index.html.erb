@@ -3,8 +3,9 @@
 
 
 <p id="notice"><%= notice %></p>
-
-<%= column_chart Downtime.group(:date).sum(:downtime) %>
+<div class="container justify-content-end"
+<%= column_chart @downtime_chart_data, width: "800px", height: "300px", xtitle: "Date", ytitle: "Downtime Minutes", suffix: " mins" %>
+</div> 
 
 <div class="container-fluid">
     <h1><%= link_to "Downtime Log", downtimes_path %></h1>

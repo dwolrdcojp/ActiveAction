@@ -5,6 +5,7 @@ class DowntimesController < ApplicationController
   # GET /downtimes.json
   def index
     @downtimes = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).order("id DESC").page params[:page]
+    @downtime_chart_data = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).group_by_day(:date, format: "%m-%d").sum(:downtime)
   end
 
   # GET /downtimes/1
