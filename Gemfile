@@ -21,13 +21,16 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Gem for Users and Account control
 gem 'devise'
-
+# Gems for making things pretty
 gem 'bootstrap'
 gem 'font-awesome-rails'
-
+# Use for creating graphs and grouping data
 gem 'chartkick'
 gem 'groupdate'
+# Pagination gem
+gem 'kaminari'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
