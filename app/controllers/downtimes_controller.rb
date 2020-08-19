@@ -4,7 +4,7 @@ class DowntimesController < ApplicationController
   # GET /downtimes
   # GET /downtimes.json
   def index
-    @downtimes = Downtime.all
+    @downtimes = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).order("id DESC")
   end
 
   # GET /downtimes/1

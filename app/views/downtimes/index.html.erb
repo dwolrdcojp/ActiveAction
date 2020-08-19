@@ -2,8 +2,44 @@
 
 <p id="notice"><%= notice %></p>
 
+<%= column_chart Downtime.group(:date).sum(:downtime) %>
+
 <div class="container-fluid">
     <h1><%= link_to "Downtime Log", downtimes_path %></h1>
+
+<div class="container-fluid">
+  <%= form_with(model: @downtime, local: true, method: "GET") do |form| %>
+  <div class="row form-group align-items-end">
+    <div class="col">
+      <%= form.label :date %><br>
+      <%= form.select :date, Downtime.all.pluck(:date).uniq, {:include_blank => true}, :class => "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.label :shift %><br>
+      <%= form.select :shift, Downtime.all.pluck(:shift).uniq, {:include_blank => true}, :class => "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.label :area %><br>
+      <%= form.select :area, Downtime.all.pluck(:area).uniq, {:include_blank => true}, :class => "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.label :line %><br>
+      <%= form.select :line, Downtime.all.pluck(:line).uniq, {:include_blank => true}, :class => "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.label :equipment %><br>
+      <%= form.select :equipment, Downtime.all.pluck(:equipment).uniq, {:include_blank => true}, :class => "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.label :reason_code %><br>
+      <%= form.select :reason_code, Downtime.all.pluck(:reason_code).uniq, {:include_blank => true}, :class => "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.submit 'Filter', :class => 'btn btn-primary form-control' %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <table class="table">
   <thead>
