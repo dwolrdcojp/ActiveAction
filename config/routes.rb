@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :downtimes
+  
   devise_for :users
+
+  resources :downtimes
+
   resources :actionitems do
     resources :comments
   end
@@ -11,6 +14,5 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
-
 
 end
