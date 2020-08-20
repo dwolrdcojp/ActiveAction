@@ -6,6 +6,8 @@ class DowntimesController < ApplicationController
   def index
     @downtimes = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).order("id DESC").page params[:page]
     @downtime_chart_data = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).group_by_day(:date, format: "%m-%d").sum(:downtime)
+    @downtime_pareto_by_min = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).group(:reason_code).sum(:downtime)
+    @downtime_pareto_by_count = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).group(:reason_code).count
   end
 
   # GET /downtimes/1

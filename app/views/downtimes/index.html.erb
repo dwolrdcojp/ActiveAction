@@ -3,9 +3,21 @@
 
 
 <p id="notice"><%= notice %></p>
-<div class="container justify-content-end"
-<%= column_chart @downtime_chart_data, width: "800px", height: "300px", xtitle: "Date", ytitle: "Downtime Minutes", suffix: " mins" %>
-</div> 
+<div class="container-fluid">
+  <table>
+    <tr>
+      <td>
+<%= column_chart @downtime_chart_data, width: "500px", height: "300px", xtitle: "Date", ytitle: "Downtime Minutes", suffix: " mins" %>
+      </td>
+      <td>
+<%= column_chart @downtime_pareto_by_min, width: "500px", height: "300px", xtitle: "Reason Code", ytitle: "Pareto Minutes", suffix: " mins" %>
+      </td>
+      <td>
+<%= column_chart @downtime_pareto_by_count, width: "500px", height: "300px", xtitle: "Reason Code", ytitle: "Pareto Occurences", suffix: " occurences" %>
+      </td>
+    </tr>
+  </table>
+</div>
 
 <div class="container-fluid">
     <h1><%= link_to "Downtime Log", downtimes_path %></h1>
