@@ -8,4 +8,5 @@ class Downtime < ApplicationRecord
   scope :filter_by_equipment, -> (equipment) { where equipment: equipment }
   scope :filter_by_reason_code, -> (reason_code) { where reason_code: reason_code }
   include Filterable
+
 end

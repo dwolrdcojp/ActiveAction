@@ -4,10 +4,12 @@ class DowntimesController < ApplicationController
   # GET /downtimes
   # GET /downtimes.json
   def index
-    @downtimes = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).order("id DESC").page params[:page]
-    @downtime_chart_data = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).group_by_day(:date, format: "%m-%d").sum(:downtime)
-    @downtime_pareto_by_min = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).group(:reason_code).sum(:downtime).sort_by { |x, y| y }.reverse
-    @downtime_pareto_by_count = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code)).group(:reason_code).count.sort_by { |x, y| y }.reverse
+    filtered_downtime = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code))
+
+    @downtimes = filtered_downtime.order("id DESC").page params[:page]
+    @downtime_chart_data = filtered_downtime.group_by_day(:date, format: "%m-%d").sum(:downtime)
+    @downtime_pareto_by_min = filtered_downtime.group(:reason_code).sum(:downtime).sort_by { |x, y| y }.reverse
+    @downtime_pareto_by_count = filtered_downtime.group(:reason_code).count.sort_by { |x, y| y }.reverse
   end
 
   # GET /downtimes/1
@@ -73,5 +75,9 @@ class DowntimesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def downtime_params
       params.require(:downtime).permit(:date, :shift, :area, :line, :equipment, :start_time, :stop_time, :downtime, :reason_code, :comment)
+    end
+
+    def filtering_params(params)
+      params.slice(:date, :shift, :area, :line, :equipment, :reason_code)
     end
 end
