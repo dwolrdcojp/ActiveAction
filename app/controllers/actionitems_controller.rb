@@ -1,7 +1,9 @@
 class ActionitemsController < ApplicationController
 
   def index
-    @actionitems = Actionitem.filter(params.slice(:focus, :owner, :due, :priority, :status)).order("id DESC").page params[:page]
+    @actionitems = Actionitem.filter(params.slice(:id, :focus, :owner, :due, :priority, :status)).order("id DESC").page params[:page] 
+    @past_due = Actionitem.all.count_past_due
+    @past_due_ids = Actionitem.find_past_due
   end
 
   def show
@@ -57,11 +59,11 @@ class ActionitemsController < ApplicationController
 
   private
     def actionitem_params
-      params.require(:actionitem).permit(:focus, :description, :owner, :due, :resources, :urgency, :importance, :status, :updates, :completion, :priority)
+      params.require(:actionitem).permit(:id, :focus, :description, :owner, :due, :resources, :urgency, :importance, :status, :updates, :completion, :priority)
     end
 
     def filtering_params(params)
-      params.slice(:focus, :owner, :due, :priority, :status)
+      params.slice(:id, :focus, :owner, :due, :priority, :status)
     end
 
 end
