@@ -9,4 +9,16 @@ class Downtime < ApplicationRecord
   scope :filter_by_reason_code, -> (reason_code) { where reason_code: reason_code }
   include Filterable
 
+  def self.daily_downtime
+    group_by_day(:date, last: 14, format: "%-m-%-d").sum(:downtime)
+  end
+
+  def self.weekly_downtime
+    group_by_week(:date, last: 14, format: "%-m-%-d", week_start: :saturday, time_zone: false).sum(:downtime)
+  end
+
+  def self.show_shift
+    pluck(:shift)
+  end
+
 end

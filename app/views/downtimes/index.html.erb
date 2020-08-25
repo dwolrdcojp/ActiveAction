@@ -1,24 +1,65 @@
 <%= javascript_pack_tag 'actionitems' %>
 
-<p id="notice"><%= notice %></p>
-<div class="container-fluid">
-  <table>
-    <tr>
-      <td>
-<%= column_chart @downtime_chart_data, width: "500px", height: "300px", xtitle: "Date", ytitle: "Downtime Minutes", suffix: " mins" %>
-      </td>
-      <td>
-<%= column_chart @downtime_pareto_by_min, width: "500px", height: "300px", xtitle: "Reason Code", ytitle: "Pareto Minutes", suffix: " mins" %>
-      </td>
-      <td>
-<%= column_chart @downtime_pareto_by_count, width: "500px", height: "300px", xtitle: "Reason Code", ytitle: "Pareto Occurences", suffix: " occurences" %>
-      </td>
-    </tr>
-  </table>
-</div>
 
 <div class="container-fluid">
-    <h1><%= link_to "Downtime Log", downtimes_path %></h1>
+    <%= link_to 'New Downtime', new_downtime_path, class: "btn btn-success float-right" %>
+    <h1><%= link_to "Downtime Log", downtimes_path %></h1><br>
+
+
+
+<table class="table table-sm table-bordered" style="table-layout: fixed; width: 100%;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Daily</th>
+      <% @daily_downtime.each do |downtime| %>
+      <th scope="col"><%= downtime[0] %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Total Mins</th>
+      <% @daily_downtime.each do |downtime| %>
+      <td><%= downtime[1] %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-sm table-bordered" style="table-layout: fixed; width: 100%;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Weekly</th>
+      <% @weekly_downtime.each do |downtime| %>
+      <th scope="col"><%= downtime[0] %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Total Mins</th>
+      <% @weekly_downtime.each do |downtime| %>
+      <td><%= downtime[1] %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <%= column_chart @downtime_chart_data, width: "500px", height: "300px", xtitle: "Date", ytitle: "Downtime Minutes", suffix: " mins" %>
+    </div>
+    <div class="col">
+      <%= column_chart @downtime_pareto_by_min, width: "500px", height: "300px", xtitle: "Reason Code", ytitle: "Pareto Minutes", suffix: " mins" %>
+    </div>
+    <div class="col">
+      <%= column_chart @downtime_pareto_by_count, width: "500px", height: "300px", xtitle: "Reason Code", ytitle: "Pareto Occurences", suffix: " occurences" %>
+    </div>
+  </div>
+</div>
+
 
 <div class="container-fluid">
   <%= form_with(model: @downtime, local: true, method: "GET") do |form| %>
@@ -55,7 +96,7 @@
 </div>
 
 <table class="table">
-  <thead>
+  <thead class="thead-light">
     <tr>
       <th scope="col">Date</th>
       <th scope="col">Shift</th>
@@ -91,5 +132,3 @@
 <br>
 
 <%= paginate @downtimes %>
-
-<%= link_to 'New Downtime', new_downtime_path %>

@@ -10,6 +10,9 @@ class DowntimesController < ApplicationController
     @downtime_chart_data = filtered_downtime.group_by_day(:date, format: "%m-%d").sum(:downtime)
     @downtime_pareto_by_min = filtered_downtime.group(:reason_code).sum(:downtime).sort_by { |x, y| y }.reverse
     @downtime_pareto_by_count = filtered_downtime.group(:reason_code).count.sort_by { |x, y| y }.reverse
+
+    @daily_downtime = Downtime.daily_downtime
+    @weekly_downtime = Downtime.weekly_downtime
   end
 
   # GET /downtimes/1
