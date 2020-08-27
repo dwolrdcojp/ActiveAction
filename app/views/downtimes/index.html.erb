@@ -5,60 +5,7 @@
     <%= link_to 'New Downtime', new_downtime_path, class: "btn btn-success float-right" %>
     <h1><%= link_to "Downtime Log", downtimes_path %></h1><br>
 
-
-
-<table class="table table-sm table-bordered" style="table-layout: fixed; width: 100%;">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Daily</th>
-      <% @daily_downtime.each do |downtime| %>
-      <th scope="col"><%= downtime[0] %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Total Mins</th>
-      <% @daily_downtime.each do |downtime| %>
-      <td><%= downtime[1] %></td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
-
-<table class="table table-sm table-bordered" style="table-layout: fixed; width: 100%;">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Weekly</th>
-      <% @weekly_downtime.each do |downtime| %>
-      <th scope="col"><%= downtime[0] %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Total Mins</th>
-      <% @weekly_downtime.each do |downtime| %>
-      <td><%= downtime[1] %></td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
-
-<p id="notice"><%= notice %></p>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <%= column_chart @downtime_chart_data, width: "500px", height: "300px", xtitle: "Date", ytitle: "Downtime Minutes", suffix: " mins" %>
-    </div>
-    <div class="col">
-      <%= column_chart @downtime_pareto_by_min, width: "500px", height: "300px", xtitle: "Reason Code", ytitle: "Pareto Minutes", suffix: " mins" %>
-    </div>
-    <div class="col">
-      <%= column_chart @downtime_pareto_by_count, width: "500px", height: "300px", xtitle: "Reason Code", ytitle: "Pareto Occurences", suffix: " occurences" %>
-    </div>
-  </div>
-</div>
+<h2><%= params.values.length < 9 ? "" : "Filtering by: #{params.values[0..5].reject(&:blank?).join(', ')}" %></h2>
 
 
 <div class="container-fluid">
@@ -93,6 +40,89 @@
       <% end %>
     </div>
   </div>
+</div>
+
+<table class="table table-sm table-bordered" style="table-layout: fixed; width: 100%;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Daily</th>
+      <% @downtime_data_daily.each do |downtime| %>
+      <th scope="col"><%= downtime[0] %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Total Mins</th>
+      <% @downtime_data_daily.each do |downtime| %>
+      <td><%= downtime[1] %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-sm table-bordered" style="table-layout: fixed; width: 100%;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Weekly</th>
+      <% @downtime_data_weekly.each do |downtime| %>
+      <th scope="col"><%= downtime[0] %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Total Mins</th>
+      <% @downtime_data_weekly.each do |downtime| %>
+      <td><%= downtime[1] %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <h2>Total Downtime Minutes - Daily</h2>
+  <div class="row">
+    <div class="col">
+      <%= column_chart @downtime_data_daily, height: "400px", xtitle: "Daily", ytitle: "Downtime Minutes", suffix: " mins" %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <h2>Total Downtime Minutes - Weekly</h2>
+  <div class="row">
+    <div class="col">
+      <%= column_chart @downtime_data_weekly, height: "400px", xtitle: "Daily", ytitle: "Downtime Minutes", suffix: " mins" %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <h2>Reason Code - Paretos</h2>
+  <div class="row">
+    <div class="col col-md-6">
+      <%= column_chart @downtime_pareto_by_min, height: "400px", xtitle: "Reason Code", ytitle: "Pareto Minutes", suffix: " mins" %>
+    </div>
+    <div class="col col-md-6">
+      <%= column_chart @downtime_pareto_by_count, height: "400px", xtitle: "Reason Code", ytitle: "Pareto Occurences", suffix: " occurences" %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <h2>Equipment - Paretos</h2>
+  <div class="row">
+    <div class="col col-md-6">
+      <%= column_chart @equipment_pareto_by_min, height: "400px", xtitle: "Equipment", ytitle: "Pareto Mins", suffix: " mins" %>
+    </div> 
+    <div class="col col-md-6">
+      <%= column_chart @equipment_pareto_by_count, height: "400px", xtitle: "Equipment", ytitle: "Pareto Occurences", suffix: " occurences" %>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <h2>Downtime Entries</h2>
 </div>
 
 <table class="table">

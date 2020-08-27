@@ -17,8 +17,4 @@ class Downtime < ApplicationRecord
     group_by_week(:date, last: 14, format: "%-m-%-d", week_start: :saturday, time_zone: false).sum(:downtime)
   end
 
-  def self.show_shift
-    pluck(:shift)
-  end
-
 end

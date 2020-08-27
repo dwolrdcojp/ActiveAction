@@ -7,12 +7,12 @@ class DowntimesController < ApplicationController
     filtered_downtime = Downtime.filter(params.slice(:date, :shift, :area, :line, :equipment, :reason_code))
 
     @downtimes = filtered_downtime.order("id DESC").page params[:page]
-    @downtime_chart_data = filtered_downtime.group_by_day(:date, format: "%m-%d").sum(:downtime)
-    @downtime_pareto_by_min = filtered_downtime.group(:reason_code).sum(:downtime).sort_by { |x, y| y }.reverse
-    @downtime_pareto_by_count = filtered_downtime.group(:reason_code).count.sort_by { |x, y| y }.reverse
-
-    @daily_downtime = Downtime.daily_downtime
-    @weekly_downtime = Downtime.weekly_downtime
+    @downtime_data_daily = filtered_downtime.group_by_day(:date, last: 14, format: "%m-%d").sum(:downtime)
+    @downtime_data_weekly = filtered_downtime.group_by_week(:date, last: 14, format: "%-m-%-d", week_start: :saturday, time_zone: false).sum(:downtime)
+    @downtime_pareto_by_min = filtered_downtime.group(:reason_code).sum(:downtime).sort_by { |x, y| y }.reverse[0..9]
+    @downtime_pareto_by_count = filtered_downtime.group(:reason_code).count.sort_by { |x, y| y }.reverse[0..9]
+    @equipment_pareto_by_min = filtered_downtime.group(:equipment).sum(:downtime).sort_by { |x, y| y }.reverse[0..9]
+    @equipment_pareto_by_count = filtered_downtime.group(:equipment).count.sort_by { |x, y| y }.reverse[0..9]
   end
 
   # GET /downtimes/1
