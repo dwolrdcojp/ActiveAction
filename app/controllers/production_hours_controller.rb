@@ -1,5 +1,6 @@
 class ProductionHoursController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def create
     @productionrun = ProductionRun.find(params[:production_run_id])
     @production_hour = @productionrun.production_hours.create(production_hour_params)

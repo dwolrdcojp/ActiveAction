@@ -1,5 +1,6 @@
 class ActionitemsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @actionitems = Actionitem.filter(params.slice(:id, :focus, :owner, :due, :priority, :status)).order("id DESC").page params[:page] 
     @past_due = Actionitem.all.count_past_due

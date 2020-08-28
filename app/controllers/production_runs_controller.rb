@@ -1,5 +1,6 @@
 class ProductionRunsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @productionruns = ProductionRun.filter(params.slice(:date, :area, :shift, :line, :supervisor)).order("id DESC").page params[:page]
   end
