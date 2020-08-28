@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_051459) do
+ActiveRecord::Schema.define(version: 2020_08_28_232641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "actionitems", force: :cascade do |t|
     t.string "focus"
@@ -29,6 +35,8 @@ ActiveRecord::Schema.define(version: 2020_08_19_051459) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "priority"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_actionitems_on_account_id"
   end
 
   create_table "comments", force: :cascade do |t|

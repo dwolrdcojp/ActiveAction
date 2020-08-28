@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  resources :accounts
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   resources :downtimes
