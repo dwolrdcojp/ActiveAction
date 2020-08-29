@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_29_000056) do
+ActiveRecord::Schema.define(version: 2020_08_29_040451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2020_08_29_000056) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_accounts_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
   create_table "actionitems", force: :cascade do |t|
@@ -45,6 +52,8 @@ ActiveRecord::Schema.define(version: 2020_08_29_000056) do
     t.bigint "actionitem_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["actionitem_id"], name: "index_comments_on_actionitem_id"
   end
 
@@ -61,6 +70,8 @@ ActiveRecord::Schema.define(version: 2020_08_29_000056) do
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_downtimes_on_account_id"
   end
 
   create_table "production_hours", force: :cascade do |t|
@@ -77,6 +88,8 @@ ActiveRecord::Schema.define(version: 2020_08_29_000056) do
     t.bigint "production_run_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_production_hours_on_account_id"
     t.index ["production_run_id"], name: "index_production_hours_on_production_run_id"
   end
 
@@ -92,6 +105,8 @@ ActiveRecord::Schema.define(version: 2020_08_29_000056) do
     t.string "start_time"
     t.string "stop_time"
     t.string "area"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_production_runs_on_account_id"
   end
 
   create_table "users", force: :cascade do |t|
