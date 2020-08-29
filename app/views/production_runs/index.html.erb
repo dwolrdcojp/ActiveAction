@@ -16,23 +16,23 @@
   <div class="row form-group align-items-end">
     <div class="col">
       <%= form.label :date %><br>
-      <%= form.select :date, ProductionRun.all.pluck(:date).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :date, ProductionRun.all.pluck(:date).uniq.unshift(" "), {:selected => params[:date]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :shift %><br>
-      <%= form.select :shift, ProductionRun.all.pluck(:shift).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :shift, ProductionRun.all.pluck(:shift).uniq.unshift(" "), {:selected => params[:shift]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :area %><br>
-      <%= form.select :area, ProductionRun.all.pluck(:area).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :area, ProductionRun.all.pluck(:area).uniq.unshift(" "), {:selected => params[:area]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :line %><br>
-      <%= form.select :line, ProductionRun.all.pluck(:line).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :line, ProductionRun.all.pluck(:line).uniq.unshift(" "), {:selected => params[:line]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :supervisor %><br>
-      <%= form.select :supervisor, ProductionRun.all.pluck(:supervisor).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :supervisor, ProductionRun.all.pluck(:supervisor).uniq.unshift(" "), {:selected => params[:supervisor]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.submit 'Filter', :class => 'btn btn-primary form-control' %>

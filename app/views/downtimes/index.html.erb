@@ -13,27 +13,27 @@
   <div class="row form-group align-items-end">
     <div class="col">
       <%= form.label :date %><br>
-      <%= form.select :date, Downtime.all.pluck(:date).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :date, Downtime.all.pluck(:date).uniq.unshift(" "), {:selected => params[:date]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :shift %><br>
-      <%= form.select :shift, Downtime.all.pluck(:shift).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :shift, Downtime.all.pluck(:shift).uniq.unshift(" "), {:selected => params[:shift]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :area %><br>
-      <%= form.select :area, Downtime.all.pluck(:area).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :area, Downtime.all.pluck(:area).uniq.unshift(" "), {:selected => params[:area]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :line %><br>
-      <%= form.select :line, Downtime.all.pluck(:line).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :line, Downtime.all.pluck(:line).uniq.unshift(" "), {:selected => params[:line]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :equipment %><br>
-      <%= form.select :equipment, Downtime.all.pluck(:equipment).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :equipment, Downtime.all.pluck(:equipment).unshift(" ").uniq, {:selected => params[:equipment]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :reason_code %><br>
-      <%= form.select :reason_code, Downtime.all.pluck(:reason_code).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :reason_code, Downtime.all.pluck(:reason_code).uniq.unshift(" "), {:selected => params[:reason_code]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.submit 'Filter', :class => 'btn btn-primary form-control' %>

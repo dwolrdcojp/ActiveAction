@@ -5,31 +5,29 @@
     <h1><%= link_to "Action Items", actionitems_path %></h1>
 
     <h1><%= @past_due_actions %></h1>
-    
 
 <div class="container-fluid">
   <%= form_with(model: @actionitem, local: true, method: "GET") do |form| %>
   <div class="row form-group align-items-end ">
     <div class="col">
       <%= form.label :focus %><br>
-      <% default = params[:focus].blank? ? " " : params[:focus] %>
-      <%= form.select :focus, Actionitem.all.pluck(:focus).uniq, {:prompt => default}, :class => "form-control" %>
+      <%= form.select :focus, Actionitem.all.pluck(:focus).uniq.unshift(" "), {:selected => params[:focus]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :owner %><br>
-      <%= form.select :owner, Actionitem.all.pluck(:owner).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :owner, Actionitem.all.pluck(:owner).uniq.unshift(" "), {:selected => params[:owner]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :due %><br>
-      <%= form.select :due, Actionitem.all.pluck(:due).uniq, {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :due, Actionitem.all.pluck(:due).uniq.unshift(" "), {:selected => params[:due]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :priority %><br>
-      <%= form.select :priority, ['High', 'Medium', 'Low'], {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :priority, ['High', 'Medium', 'Low'].unshift(" "), {:selected => params[:priority]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :status %><br>
-      <%= form.select :status, ['Open', 'Review', 'Completed'], {:include_blank => true}, :class => "form-control" %>
+      <%= form.select :status, ['Open', 'Review', 'Completed'].unshift(" "), {:selected => params[:status]}, :class => "form-control" %>
     </div>
     <div class="col">
     <%= form.submit 'Filter', :class => 'btn btn-primary form-control' %>
