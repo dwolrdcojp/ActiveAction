@@ -1,10 +1,9 @@
 <%= javascript_pack_tag 'actionitems' %>
 
 <div class="container-fluid">
+      <%= link_to 'New Action Item', new_actionitem_path, class: "btn btn-primary float-right" %><br><br>
       <%= button_to "#{@past_due} Action Items past due", actionitems_path, method: :get, params: { id: @past_due_ids }, :class => "btn btn-danger float-right" %>
     <h1><%= link_to "Action Items", actionitems_path %></h1>
-
-    <h1><%= @past_due_actions %></h1>
 
 <div class="container-fluid">
   <%= form_with(model: @actionitem, local: true, method: "GET") do |form| %>
@@ -33,10 +32,11 @@
     <%= form.submit 'Filter', :class => 'btn btn-primary form-control' %>
     </div>
     <div class="col">
+      <%= link_to fa_icon("window-close 2x"), actionitems_path, style: 'color:#ff4800;' %>
+    </div>
       <%= pie_chart Actionitem.group(:status).count, colors: ["#FF0000", "#00B431", "#FFF000"], id: "status-chart", width: "200px", height: "200px", legend: false, library: {title: {display: true, text: "Status Chart"}} %>
         <br>
     </div>
-      <%= link_to 'New Action Item', new_actionitem_path, class: "btn btn-primary" %>
     </div>
     <% end %>
   </div>
