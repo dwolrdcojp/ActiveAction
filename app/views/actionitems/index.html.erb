@@ -7,13 +7,13 @@
     <h1><%= @past_due_actions %></h1>
     
 
-
 <div class="container-fluid">
   <%= form_with(model: @actionitem, local: true, method: "GET") do |form| %>
   <div class="row form-group align-items-end ">
     <div class="col">
       <%= form.label :focus %><br>
-      <%= form.select :focus, Actionitem.all.pluck(:focus).uniq, {:include_blank => true}, :class => "form-control" %>
+      <% default = params[:focus].blank? ? " " : params[:focus] %>
+      <%= form.select :focus, Actionitem.all.pluck(:focus).uniq, {:prompt => default}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :owner %><br>
