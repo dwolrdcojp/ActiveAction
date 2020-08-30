@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_29_040451) do
+ActiveRecord::Schema.define(version: 2020_08_29_233051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 2020_08_29_040451) do
     t.integer "account_id"
     t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["actionitem_id"], name: "index_comments_on_actionitem_id"
+  end
+
+  create_table "downtime_criteria", force: :cascade do |t|
+    t.string "shift"
+    t.string "area"
+    t.string "line"
+    t.string "equipment"
+    t.string "reason_code"
   end
 
   create_table "downtimes", force: :cascade do |t|

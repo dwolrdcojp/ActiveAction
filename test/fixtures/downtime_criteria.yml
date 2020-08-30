@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shift: MyString
+  area: MyString
+  line: MyString
+  equipment: MyString
+  reason_code: MyString
+  downtime: one
+
+two:
+  shift: MyString
+  area: MyString
+  line: MyString
+  equipment: MyString
+  reason_code: MyString
+  downtime: two

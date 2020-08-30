@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shift:</strong>
+  <%= @downtime_criterium.shift %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @downtime_criterium.area %>
+</p>
+
+<p>
+  <strong>Line:</strong>
+  <%= @downtime_criterium.line %>
+</p>
+
+<p>
+  <strong>Equipment:</strong>
+  <%= @downtime_criterium.equipment %>
+</p>
+
+<p>
+  <strong>Reason code:</strong>
+  <%= @downtime_criterium.reason_code %>
+</p>
+
+<%= link_to 'Edit', edit_downtime_criterium_path(@downtime_criterium) %> |
+<%= link_to 'Back', downtime_criteria_path %>

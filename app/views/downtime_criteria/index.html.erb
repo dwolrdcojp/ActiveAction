@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Downtime Criteria</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shift</th>
+      <th>Area</th>
+      <th>Line</th>
+      <th>Equipment</th>
+      <th>Reason code</th>
+      <th>Downtime</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @downtime_criteria.each do |downtime_criterium| %>
+      <tr>
+        <td><%= downtime_criterium.shift %></td>
+        <td><%= downtime_criterium.area %></td>
+        <td><%= downtime_criterium.line %></td>
+        <td><%= downtime_criterium.equipment %></td>
+        <td><%= downtime_criterium.reason_code %></td>
+        <td><%= downtime_criterium.downtime_id %></td>
+        <td><%= link_to 'Show', downtime_criterium %></td>
+        <td><%= link_to 'Edit', edit_downtime_criterium_path(downtime_criterium) %></td>
+        <td><%= link_to 'Destroy', downtime_criterium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Downtime Criterium', new_downtime_criterium_path %>

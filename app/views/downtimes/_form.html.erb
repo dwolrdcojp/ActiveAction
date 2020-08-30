@@ -1,3 +1,5 @@
+
+<div class="col col-lg-4">
 <%= form_with(model: downtime, local: true) do |form| %>
   <% if downtime.errors.any? %>
     <div id="error_explanation">
@@ -13,55 +15,55 @@
 
   <div class="field">
     <%= form.label :date %>
-    <%= form.date_select :date %>
+    <%= form.date_select :date, {}, {:class => "form-control"} %>
   </div>
 
   <div class="field">
     <%= form.label :shift %>
-    <%= form.text_field :shift %>
+    <%= form.select :shift, @downtime_criteria.pluck(:shift).uniq.unshift(" "), {:selected => params[:shift]}, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :area %>
-    <%= form.text_field :area %>
+    <%= form.select :area, @downtime_criteria.pluck(:area).uniq.unshift(" "), {:selected => params[:area]}, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :line %>
-    <%= form.text_field :line %>
-  </div>
+    <%= form.select :line, @downtime_criteria.pluck(:line).uniq.unshift(" "), {:selected => params[:line]}, :class => "form-control" %>  </div>
 
   <div class="field">
     <%= form.label :equipment %>
-    <%= form.text_field :equipment %>
+    <%= form.select :equipment, @downtime_criteria.pluck(:equipment).unshift(" ").uniq, {:selected => params[:equipment]}, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :start_time %>
-    <%= form.text_field :start_time %>
+    <%= form.text_field :start_time, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :stop_time %>
-    <%= form.text_field :stop_time %>
+    <%= form.text_field :stop_time, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :downtime %>
-    <%= form.number_field :downtime %>
+    <%= form.number_field :downtime, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :reason_code %>
-    <%= form.text_field :reason_code %>
+    <%= form.select :reason_code, @downtime_criteria.pluck(:reason_code).uniq.unshift(" "), {:selected => params[:reason_code]}, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :comment %>
-    <%= form.text_field :comment %>
-  </div>
+    <%= form.text_field :comment, :class => "form-control" %>
+  </div><br>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="btn btn-primary">
+    <%= form.submit 'Add Downtime Entry', :class => "btn btn-primary" %>
   </div>
 <% end %>
+</div>

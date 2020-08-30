@@ -1,8 +1,8 @@
 <%= javascript_pack_tag 'actionitems' %>
 
-
 <div class="container-fluid">
-    <%= link_to 'New Downtime', new_downtime_path, class: "btn btn-success float-right" %>
+    <%= link_to 'Add Downtime Criteria', new_downtime_criterium_path, class: "btn btn-success float-right" %><br><br>
+    <%= link_to 'New Downtime Entry', new_downtime_path, class: "btn btn-success float-right" %>
     <h1><%= link_to "Downtime Log", downtimes_path %></h1><br>
 
 <h2><%= params.values.length < 9 ? "" : "Filtering by: #{params.values[0..5].reject(&:blank?).join(', ')}" %></h2>
@@ -17,23 +17,23 @@
     </div>
     <div class="col">
       <%= form.label :shift %><br>
-      <%= form.select :shift, Downtime.all.pluck(:shift).uniq.unshift(" "), {:selected => params[:shift]}, :class => "form-control" %>
+      <%= form.select :shift, @downtime_criteria.pluck(:shift).uniq.unshift(" "), {:selected => params[:shift]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :area %><br>
-      <%= form.select :area, Downtime.all.pluck(:area).uniq.unshift(" "), {:selected => params[:area]}, :class => "form-control" %>
+      <%= form.select :area, @downtime_criteria.pluck(:area).uniq.unshift(" "), {:selected => params[:area]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :line %><br>
-      <%= form.select :line, Downtime.all.pluck(:line).uniq.unshift(" "), {:selected => params[:line]}, :class => "form-control" %>
+      <%= form.select :line, @downtime_criteria.pluck(:line).uniq.unshift(" "), {:selected => params[:line]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :equipment %><br>
-      <%= form.select :equipment, Downtime.all.pluck(:equipment).unshift(" ").uniq, {:selected => params[:equipment]}, :class => "form-control" %>
+      <%= form.select :equipment, @downtime_criteria.pluck(:equipment).unshift(" ").uniq, {:selected => params[:equipment]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :reason_code %><br>
-      <%= form.select :reason_code, Downtime.all.pluck(:reason_code).uniq.unshift(" "), {:selected => params[:reason_code]}, :class => "form-control" %>
+      <%= form.select :reason_code, @downtime_criteria.pluck(:reason_code).uniq.unshift(" "), {:selected => params[:reason_code]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.submit 'Filter', :class => 'btn btn-primary form-control' %>

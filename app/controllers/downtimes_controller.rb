@@ -14,6 +14,7 @@ class DowntimesController < ApplicationController
     @downtime_pareto_by_count = filtered_downtime.group(:reason_code).count.sort_by { |x, y| y }.reverse[0..9]
     @equipment_pareto_by_min = filtered_downtime.group(:equipment).sum(:downtime).sort_by { |x, y| y }.reverse[0..9]
     @equipment_pareto_by_count = filtered_downtime.group(:equipment).count.sort_by { |x, y| y }.reverse[0..9]
+    @downtime_criteria = DowntimeCriterium.all
   end
 
   # GET /downtimes/1
@@ -24,6 +25,7 @@ class DowntimesController < ApplicationController
   # GET /downtimes/new
   def new
     @downtime = Downtime.new
+    @downtime_criteria = DowntimeCriterium.all
   end
 
   # GET /downtimes/1/edit

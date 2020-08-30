@@ -1,0 +1,2 @@
+module DowntimeCriteriaHelper
+end
