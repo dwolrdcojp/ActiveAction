@@ -1,4 +1,5 @@
 class Downtime < ApplicationRecord
+  acts_as_tenant(:account)
   validates :date, :shift, :area, :line, :equipment, :start_time, 
             :downtime, :reason_code, presence: true
   scope :filter_by_date, -> (date) { where date: date }

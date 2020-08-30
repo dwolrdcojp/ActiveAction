@@ -1,5 +1,7 @@
 class DowntimeCriterium < ApplicationRecord
-  require 'csv' 
+  acts_as_tenant(:account)
+  require 'csv'
+
   # Bulk upload downtime criteria
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

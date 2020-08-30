@@ -1,4 +1,5 @@
 class ProductionRun < ApplicationRecord
+  acts_as_tenant(:account)
   has_many :production_hours
   validates :date, :shift, :area, :line, :supervisor, :lead, 
             :operator, :start_time, presence: true
