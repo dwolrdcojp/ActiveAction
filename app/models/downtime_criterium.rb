@@ -1,5 +1,5 @@
 class DowntimeCriterium < ApplicationRecord
-  require 'CSV' 
+  require 'csv' 
   # Bulk upload downtime criteria
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
