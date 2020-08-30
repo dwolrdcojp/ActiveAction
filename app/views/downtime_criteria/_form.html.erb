@@ -1,3 +1,13 @@
+<%= form_for @downtime_criterium, url: downtime_criteria_path do |f| %>
+  <div class="form-group">
+    <%= f.label :file, "Upload CSV file with downtime criteria" %>
+    <%= f.file_field :file, :class => 'form-control-file', required: true %>
+  </div>
+  <%= f.submit "Upload CSV", :class => 'btn btn-primary' %>
+<% end %>
+
+<br>
+
 <%= form_with(model: downtime_criterium, local: true) do |form| %>
   <% if downtime_criterium.errors.any? %>
     <div id="error_explanation">
@@ -13,30 +23,33 @@
 
   <div class="field">
     <%= form.label :shift %>
-    <%= form.text_field :shift %>
+    <%= form.text_field :shift, :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :area %>
-    <%= form.text_field :area %>
+    <%= form.text_field :area, :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :line %>
-    <%= form.text_field :line %>
+    <%= form.text_field :line, :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :equipment %>
-    <%= form.text_field :equipment %>
+    <%= form.text_field :equipment, :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :reason_code %>
-    <%= form.text_field :reason_code %>
+    <%= form.text_field :reason_code, :class => 'form-control' %>
   </div>
+  <br>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Add Downtime Criteria", :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+<br>

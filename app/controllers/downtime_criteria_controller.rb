@@ -26,6 +26,9 @@ class DowntimeCriteriaController < ApplicationController
   def create
     @downtime_criterium = DowntimeCriterium.new(downtime_criterium_params)
 
+    DowntimeCriterium.import(params[:downtime_criterium][:file])
+    flash[:notice] = "Downtime criteria uploaded successfully"
+       
     respond_to do |format|
       if @downtime_criterium.save
         format.html { redirect_to downtimes_path, notice: 'Downtime criterium was successfully created.' }
