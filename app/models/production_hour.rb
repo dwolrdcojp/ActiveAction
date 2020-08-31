@@ -34,7 +34,7 @@ class ProductionHour < ApplicationRecord
     downtime = production_hours.sum(:downtime).round(2),
     waste = production_hours.sum(:waste).round(2),
     rework = production_hours.sum(:rework).round(2),
-    avg_yield = "#{production_hours.average(:yield).to_f * 100}%"]
+    avg_yield = "#{production_hours.average(:yield).to_f.round(2) * 100}%"]
   end
 
   def sanitize(number)
