@@ -1,6 +1,6 @@
 class ProductionRun < ApplicationRecord
   acts_as_tenant(:account)
-  has_many :production_hours
+  has_many :production_hours, dependent: :destroy
   validates :date, :shift, :area, :line, :supervisor, :lead, 
             :operator, :start_time, presence: true
   scope :filter_by_date, -> (date) { where date: date }

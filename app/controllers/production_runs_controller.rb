@@ -47,6 +47,7 @@ class ProductionRunsController < ApplicationController
 
   def destroy
     @productionrun = ProductionRun.find(params[:id])
+    @productionrun.production_hours.destroy
     @productionrun.destroy
 
     redirect_to production_runs_path
