@@ -7,7 +7,7 @@ class ProductionRunsController < ApplicationController
 
   def show
     @productionrun = ProductionRun.find(params[:id])
-    @hour_calculations = ProductionHour.hour_calculations
+    @hour_calculations = ProductionHour.hour_calculations(@productionrun.production_hours)
     @total_calculations = ProductionHour.total_calculations
   end
 

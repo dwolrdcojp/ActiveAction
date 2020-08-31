@@ -2,8 +2,8 @@ class ProductionHour < ApplicationRecord
   acts_as_tenant(:account)
   belongs_to :production_run
 
-  def self.hour_calculations
-    ProductionHour.all.map do |x|
+  def self.hour_calculations(production_hours)
+    production_hours.map do |x|
       {hour: x.hour,
        product: x.product,
        plan_throughput: x.plan_throughput,

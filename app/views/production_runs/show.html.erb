@@ -1,5 +1,7 @@
 <%= javascript_pack_tag 'actionitems' %>
 
+<h1><%= @productionrun.production_hours.map { |x| x } %></h1>
+
 <div class="container-fluid">
 <h1><%= link_to "Production Run: #{@productionrun.id}", production_run_path %> </h1>
 
