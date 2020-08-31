@@ -5,6 +5,18 @@
       <%= button_to "#{@past_due} Action Items past due", actionitems_path, method: :get, params: { id: @past_due_ids }, :class => "btn btn-danger float-right" %>
     <h1><%= link_to "Action Items", actionitems_path %></h1>
 
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" >
+    <a class="<%= params[:focus].blank? ? "nav-link active" : "nav-link" %>" data-toggle="tab" href="/actionitems" role="tab" aria-controls="home" aria-selected="true" data-turbolinks="false" >All</a>
+  </li>
+    <% @focus = Actionitem.all.pluck(:focus).uniq %>
+<% @focus.each do |x| %>
+  <li class="nav-item">
+    <a class="<%= params[:focus] == x ? "nav-link active" : "nav-link" %>" data-toggle="tab" href=<%= "/actionitems?focus=#{x}" %> role="tab" aria-controls="home" aria-selected="true" data-turbolinks="false"><%= x %></a>
+  </li>
+  <% end %>
+</ul>
+
 <div class="container-fluid">
   <%= form_with(model: @actionitem, local: true, method: "GET") do |form| %>
   <div class="row form-group align-items-end ">

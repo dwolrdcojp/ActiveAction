@@ -9,6 +9,6 @@ jQuery(function($) {
       }, function(){
       $(this).css("background-color", "white");
     });
-
+    
 });
 
