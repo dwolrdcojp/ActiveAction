@@ -1,9 +1,16 @@
 <%= javascript_pack_tag 'actionitems' %>
 
 <div class="container-fluid">
-<h1><%= link_to "Production Run: #{@productionrun.id}", production_run_path %> </h1>
+  <div class="col-sm-8">
+    <h1><%= link_to "Production Runs", production_runs_path %></h1>
+  </div>
+</div>
 
-<div class="card">
+<div class="col">
+<div class="card bg-light border-dark">
+  <div class="card-header">
+   <h2> Production Run Info </h2>
+  </div>
   <div class="card-body">
     <p class="card-text">
       <div class="row">
@@ -39,10 +46,13 @@
     </p>
   </div>
 </div>
+</div>
+
 <br>
+
 <div class="container-fluid">
 <h2>Production Hours</h2>
-<div class="card">
+<div class="card bg-light border-dark">
   <div class="card-body">
 <table class="table">
   <thead class="thead-dark">
@@ -89,7 +99,7 @@
 </div>
 <br>
 <h2> Production Run Summary </h2>
-<div class="card">
+<div class="card bg-light border-dark">
   <div class="card-body">
 <div>
   <table class="table">

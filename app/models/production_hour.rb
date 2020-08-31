@@ -23,17 +23,22 @@ class ProductionHour < ApplicationRecord
 
   def self.total_calculations(production_hours)
     array = [
-    plan_throughput = production_hours.sum(:plan_throughput).round(3),
-    actual_throughput = production_hours.sum(:actual_throughput).round(3),
-    tp_attainment = "#{(actual_throughput / plan_throughput) * 100}%",
-    plan_labor = production_hours.sum(:plan_labor).round(3),
-    actual_labor = production_hours.sum(:actual_labor).round(3),
-    plan_efficiency = (plan_throughput / plan_labor).round(3).to_f * 100,
-    actual_effieciency = (actual_throughput / actual_labor).round(3).to_f * 100,
-    eff_attainment = "#{(actual_effieciency / plan_efficiency).round(3).to_f * 100}%",
-    downtime = production_hours.sum(:downtime).round(3),
-    waste = production_hours.sum(:waste).round(3),
-    rework = production_hours.sum(:rework).round(3),
+    plan_throughput = production_hours.sum(:plan_throughput).round(2),
+    actual_throughput = production_hours.sum(:actual_throughput).round(2),
+    tp_attainment = "#{ProductionHour.new.sanitize((actual_throughput / plan_throughput)) * 100}%",
+    plan_labor = production_hours.sum(:plan_labor),
+    actual_labor = production_hours.sum(:actual_labor).round(2),
+    plan_efficiency = ProductionHour.new.sanitize((plan_throughput / plan_labor)),
+    actual_effieciency = ProductionHour.new.sanitize((actual_throughput / actual_labor)),
+    eff_attainment = "#{ProductionHour.new.sanitize((actual_effieciency / plan_efficiency rescue 0)) * 100}%",
+    downtime = production_hours.sum(:downtime).round(2),
+    waste = production_hours.sum(:waste).round(2),
+    rework = production_hours.sum(:rework).round(2),
     avg_yield = "#{production_hours.average(:yield).to_f * 100}%"]
   end
+
+  def sanitize(number)
+    number.to_f.nan? ? 0 : number.round(2)
+  end
+
 end
