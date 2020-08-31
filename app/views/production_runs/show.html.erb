@@ -1,59 +1,51 @@
 <%= javascript_pack_tag 'actionitems' %>
 
 <div class="container-fluid">
-<h1><%= link_to "Production Run: #{@productionrun.id}", production_run_path %></h1>
+<h1><%= link_to "Production Run: #{@productionrun.id}", production_run_path %> </h1>
 
-<br>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Date</th>
-      <th scope="col">Shift</th>
-      <th scope="col">Area</th>
-      <th scope="col">Line</th>
-      <th scope="col">Supervisor</th>
-      <th scope="col">Lead</th>
-      <th scope="col">Operator</th>
-      <th scope="col">Start Time</th>
-      <th scope="col">Stop Time</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @productionrun.id %></td>
-      <td><%= @productionrun.date.strftime("%-m/%-d") %></td>
-      <td><%= @productionrun.shift %></td>
-      <td><%= @productionrun.area %></td>
-      <td><%= @productionrun.line %></td>
-      <td><%= @productionrun.supervisor %></td>
-      <td><%= @productionrun.lead %></td>
-      <td><%= @productionrun.operator %></td>
-      <td><%= @productionrun.start_time[0..1]%>:<%= @productionrun.start_time[2..3]%></td>
-      <td><%= @productionrun.stop_time[0..1]%>:<%= @productionrun.stop_time[2..3]%></td>
-      <td><%= link_to fa_icon("pencil 2x"), edit_production_run_path(@productionrun), style: 'color:#00cc44;' %></td>
-      <td><%= link_to fa_icon("trash 2x"), production_run_path(@productionrun), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-</tbody>
-</table>
-</div>
-
-  
-<div class="container-fluid">
-<div class="row">
-  <div class="col-sm-8">
-    <h2>Production Hours</h2>
+<div class="card">
+  <div class="card-body">
+    <p class="card-text">
+      <div class="row">
+      <div class="col">
+        <h4>Date</h4>
+        <%= @productionrun.date.strftime("%-m/%-d") %><br><br>
+        <h4>Shift</h4>
+        <%= @productionrun.shift %><br>
+      </div>
+      <div class="col">
+        <h4>Area</h4>
+        <%= @productionrun.area %><br><br>
+        <h4>Line</h4>
+        <%= @productionrun.line %><br>
+      </div>
+      <div class="col">
+        <h4>Supervisor</h4>
+        <%= @productionrun.supervisor %><br><br>
+        <h4>Lead</h4>
+        <%= @productionrun.lead %><br><br>
+      </div>
+      <div class="col">
+        <h4>Start Time</h4>
+        <%= @productionrun.start_time[0..1]%>:<%= @productionrun.start_time[2..3]%><br><br><br>
+        <%= link_to fa_icon("pencil 2x"), edit_production_run_path(@productionrun), style: 'color:#00cc44;' %>
+      </div>
+      <div class="col">
+        <h4>Stop Time</h4>
+        <%= @productionrun.stop_time[0..1]%>:<%= @productionrun.stop_time[2..3]%><br><br><br>
+        <%= link_to fa_icon("trash 2x"), production_run_path(@productionrun), method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+    </p>
   </div>
 </div>
-
 <br>
-
+<div class="container-fluid">
+<h2>Production Hours</h2>
+<div class="card">
+  <div class="card-body">
 <table class="table">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th scope="col">Hour</th>
       <th scope="col">Product</th>
@@ -69,39 +61,40 @@
       <th scope="col">Waste</th>
       <th scope="col">Rework</th>
       <th scope="col">Yield</th>     
-      <th scope="col">Delete</th>
     </tr>
 
   </thead>
   <tbody>
-    <% @productionrun.production_hours.each do |production_hour| %>
-  <tr data-link="<%= edit_production_run_production_hour_path(production_hour.production_run, production_hour) %>" style="cursor:pointer;">
-    <td><%= production_hour.hour %></td>
-    <td><%= production_hour.product %></td>
-    <td><%= production_hour.plan_throughput %></td>
-    <td><%= production_hour.actual_throughput %></td>
-    <td><%= (production_hour.actual_throughput / production_hour.plan_throughput).round(2) *100 %>%</td>
-    <td><%= production_hour.plan_labor %></td>
-    <td><%= production_hour.actual_labor %></td>
-    <td><%= (production_hour.plan_throughput / production_hour.plan_labor).round(2) %></td>
-    <td><%= (production_hour.actual_throughput / production_hour.actual_labor).round(2) %></td>
-    <td><%= ((production_hour.actual_throughput / production_hour.actual_labor) / (production_hour.plan_throughput / production_hour.plan_labor)).round(3) * 100 %>%</td>
-    <td><%= production_hour.downtime %></td>
-    <td><%= production_hour.waste %></td>
-    <td><%= production_hour.rework %></td>
-    <td><%= production_hour.yield %></td>
-    <td><%= link_to fa_icon("trash 2x"), [production_hour.production_run, production_hour], method: :delete, style: 'color:#ff4800;', data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+    <% @hour_calculations.each do |data| %>
+    <tr data-link="<%= edit_production_run_production_hour_path(@productionrun.id, @hour_calculations.find_index(data) + 1) %>" style="cursor:pointer;">
+      <td><%= data[:hour] %></td>
+      <td><%= data[:product] %></td>
+      <td><%= data[:plan_throughput] %></td>
+      <td><%= data[:actual_throughput] %></td>
+      <td><%= data[:tp_attainment] %>%</td>
+      <td><%= data[:plan_labor] %></td>
+      <td><%= data[:actual_labor] %></td>
+      <td><%= data[:plan_efficiency] %></td>
+      <td><%= data[:actual_efficiency] %></td>
+      <td><%= data[:eff_attainment] %>%</td>
+      <td><%= data[:downtime] %></td>
+      <td><%= data[:waste] %></td>
+      <td><%= data[:rework] %></td>
+      <td><%= data[:yield] %></td>
+    </tr>
+    <% end %>
   </tbody>
 </table>
 </div>
-
+</div>
+<br>
+<h2> Production Run Summary </h2>
+<div class="card">
+  <div class="card-body">
 <div>
   <table class="table">
-    <thead>
+    <thead class="thead-dark">
       <tr>
-        <th scope="col">Total</th>
         <th scope="col">Plan Throughput</th>
         <th scope="col">Actual Throughput</th>
         <th scope="col">Attainment</th>
@@ -118,26 +111,20 @@
     </thead>
     <tbody>
       <tr>
-        <td>Total</td>
-        <td><%= @productionrun.production_hours.sum(:plan_throughput) %></td>
-        <td><%= @productionrun.production_hours.sum(:actual_throughput) %></td>
-        <td><%= (@productionrun.production_hours.sum(:actual_throughput) / @productionrun.production_hours.sum(:plan_throughput)).round(2) * 100 %>%</td>
-        <td><%= @productionrun.production_hours.sum(:plan_labor) %></td>
-        <td><%= @productionrun.production_hours.sum(:actual_labor) %></td>
-        <td><%= (@productionrun.production_hours.sum(:plan_throughput) / @productionrun.production_hours.sum(:plan_labor)).round(2)  %></td>
-        <td><%= (@productionrun.production_hours.sum(:actual_throughput) / @productionrun.production_hours.sum(:actual_labor)).round(2)  %></td>
-        <td><%= ((@productionrun.production_hours.sum(:actual_throughput) / @productionrun.production_hours.sum(:actual_labor)) / (@productionrun.production_hours.sum(:plan_throughput) / @productionrun.production_hours.sum(:plan_labor)) ).round(2) * 100%>%</td>
-          <td><%= @productionrun.production_hours.sum(:downtime) %></td>
-          <td><%= @productionrun.production_hours.sum(:waste) %></td>
-          <td><%= @productionrun.production_hours.sum(:rework) %></td>
-          <td><%= @productionrun.production_hours.sum(:yield) %></td>
+        <% @total_calculations.each do |data| %>
+        <td><%= data %></td>
+        <% end %>
       </tr>
   </tbody>
   </table>
 </div>
+</div>
+</div>
+<br>
 
 
-<div class="container">
+<div class="container-fluid">
+  <div class="col col-md-3">
 <h2>Add a Production Hour:</h2>
 <%= form_with(model: [@productionrun, @productionrun.production_hours.build], local: true) do |form| %>
 
@@ -199,4 +186,5 @@
 
 <%= link_to 'Edit', edit_production_run_path(@productionrun) %> |
 <%= link_to 'Back', production_runs_path %>
+</div>
 </div
