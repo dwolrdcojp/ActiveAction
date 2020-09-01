@@ -13,27 +13,27 @@
   <div class="row form-group align-items-end">
     <div class="col">
       <%= form.label :date %><br>
-      <%= form.select :date, Downtime.all.pluck(:date).uniq.unshift(" "), {:selected => params[:date]}, :class => "form-control" %>
+      <%= form.select :date, Downtime.all.pluck(:date).uniq.unshift(" ").reject { |x| x.nil? || x == ""  }, {:selected => params[:date]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :shift %><br>
-      <%= form.select :shift, @downtime_criteria.pluck(:shift).uniq.unshift(" "), {:selected => params[:shift]}, :class => "form-control" %>
+      <%= form.select :shift, @downtime_criteria.pluck(:shift).uniq.unshift(" ").reject { |x| x.nil? || x == ""  }, {:selected => params[:shift]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :area %><br>
-      <%= form.select :area, @downtime_criteria.pluck(:area).uniq.unshift(" "), {:selected => params[:area]}, :class => "form-control" %>
+      <%= form.select :area, @downtime_criteria.pluck(:area).uniq.unshift(" ").reject { |x| x.nil? || x == ""  }, {:selected => params[:area]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :line %><br>
-      <%= form.select :line, @downtime_criteria.pluck(:line).uniq.unshift(" "), {:selected => params[:line]}, :class => "form-control" %>
+      <%= form.select :line, @downtime_criteria.pluck(:line).uniq.unshift(" ").reject { |x| x.nil? || x == ""  }, {:selected => params[:line]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :equipment %><br>
-      <%= form.select :equipment, @downtime_criteria.pluck(:equipment).unshift(" ").uniq, {:selected => params[:equipment]}, :class => "form-control" %>
+      <%= form.select :equipment, @downtime_criteria.pluck(:equipment).unshift(" ").uniq.reject { |x| x.nil? || x == ""  }, {:selected => params[:equipment]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.label :reason_code %><br>
-      <%= form.select :reason_code, @downtime_criteria.pluck(:reason_code).uniq.unshift(" "), {:selected => params[:reason_code]}, :class => "form-control" %>
+      <%= form.select :reason_code, @downtime_criteria.pluck(:reason_code).uniq.unshift(" ").reject { |x| x.nil? || x == ""  }, {:selected => params[:reason_code]}, :class => "form-control" %>
     </div>
     <div class="col">
       <%= form.submit 'Filter', :class => 'btn btn-primary form-control' %>
