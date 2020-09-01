@@ -14,7 +14,7 @@ class ProductionHour < ApplicationRecord
        actual_labor: x.actual_labor,
        plan_efficiency: (x.plan_throughput / x.plan_labor).round(2),
        actual_efficiency: (x.actual_throughput / x.actual_labor).round(2),
-       eff_attainment: ((x.actual_throughput / x.actual_labor) / (x.plan_throughput / x.plan_labor)).round(3)  * 100,
+       eff_attainment: ((x.actual_throughput / x.actual_labor) / (x.plan_throughput / x.plan_labor)).round(2)  * 100,
        downtime: x.downtime,
        waste: x.waste,
        rework: x.rework,
