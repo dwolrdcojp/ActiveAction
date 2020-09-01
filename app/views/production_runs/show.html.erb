@@ -76,7 +76,7 @@
   </thead>
   <tbody>
     <% @hour_calculations.each do |data| %>
-    <tr data-link="<%= edit_production_run_production_hour_path(@productionrun.id, @hour_calculations.find_index(data) + 1) %>" style="cursor:pointer;">
+    <tr data-link="<%= edit_production_run_production_hour_path(@productionrun.id, data[:id]) %>" style="cursor:pointer;">
       <td><%= data[:hour] %></td>
       <td><%= data[:product] %></td>
       <td><%= data[:plan_throughput] %></td>

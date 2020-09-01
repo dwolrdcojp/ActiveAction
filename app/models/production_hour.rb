@@ -4,7 +4,8 @@ class ProductionHour < ApplicationRecord
 
   def self.hour_calculations(production_hours)
     production_hours.map do |x|
-      {hour: x.hour,
+      {id: x.id,
+       hour: x.hour,
        product: x.product,
        plan_throughput: x.plan_throughput,
        actual_throughput: x.actual_throughput,
