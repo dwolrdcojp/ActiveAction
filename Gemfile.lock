@@ -91,6 +91,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.2)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.13.1)
@@ -248,6 +251,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chartkick
   devise
+  devise_invitable
   font-awesome-rails
   groupdate
   jbuilder (~> 2.7)

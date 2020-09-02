@@ -37,6 +37,9 @@ gem 'kaminari'
 #Use to make mulitenancy simpler
 gem 'acts_as_tenant'
 
+#For Account owners to invite their company's Users
+gem 'devise_invitable'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
