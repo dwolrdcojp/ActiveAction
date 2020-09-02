@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  
-  resources :downtime_criteria
   devise_for :accounts, controllers: { sessions: 'accounts/sessions', registrations: 'accounts/registrations' }
 
   devise_for :users, controllers: { sessions: 'users/sessions' }
