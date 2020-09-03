@@ -1,10 +1,8 @@
 
+<h4>Commenting as <%= current_user.email %></h4>
 
 <%= form_with(model: [ @actionitem, @actionitem.comments.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter, class: "form-control" %>
-  </p>
+
   <p>
     <%= form.label :body %><br>
     <%= form.text_area :body, class: "form-control" %>

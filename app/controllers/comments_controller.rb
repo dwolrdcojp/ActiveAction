@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   
   def create
     @actionitem = Actionitem.find(params[:actionitem_id])
-    @comment = @actionitem.comments.create(comment_params)
+    @comment = @actionitem.comments.create(:commenter => current_user.email, :body => params[:comment][:body])
     redirect_to actionitem_path(@actionitem)
   end
 

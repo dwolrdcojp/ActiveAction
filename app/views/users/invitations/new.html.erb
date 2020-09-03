@@ -1,7 +1,5 @@
 <h2><%= t "devise.invitations.new.header" %></h2>
 
-<%= current_account.id %>
-
 <%= form_for(resource, as: @invitation, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
