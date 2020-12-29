@@ -3,8 +3,7 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def create
     super
-    User.invite!(:email => params[:email], :account_id => current_account.id)
-    User.where(email: params[:user][:email]).update_all(account_id: current_account.id)
+    User.invite!({:email => params[:email], :account_id => current_account.id}, current_account)
   end
 
   protected
